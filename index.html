@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICwiki - 明日方舟：终末地 Wiki</title>
+    <!-- 网站图标 -->
+    <link rel="icon" href="icon.png" type="image/png">
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 统一的 Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a56db',
+                        secondary: '#6b7280',
+                        success: '#10b981',
+                        danger: '#ef4444',
+                        warning: '#f59e0b',
+                        info: '#3b82f6',
+                        light: '#f3f4f6',
+                        dark: '#374151',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .sidebar-active {
+                @apply bg-primary text-white;
+            }
+            .sidebar-icon {
+                @apply mr-3 text-lg;
+            }
+            .card-hover {
+                @apply transition-all duration-300 hover:shadow-lg;
+            }
+            .progress-bar {
+                @apply h-2 rounded-full bg-gray-200 overflow-hidden;
+            }
+            .progress-value {
+                @apply h-full rounded-full;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="flex h-screen overflow-hidden">
+        <!-- 左侧导航栏 -->
+        <aside class="w-64 bg-white shadow-md hidden md:block">
+            <!-- 品牌区域 -->
+            <div class="p-4 border-b">
+                <div class="flex items-center">
+                    <img src="icon.png" alt="AICwiki" class="w-8 h-8 mr-2">
+                    <div>
+                        <h1 class="text-xl font-bold text-primary">AICwiki</h1>
+                        <p class="text-xs text-gray-500">明日方舟：终末地 Wiki</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 导航菜单 -->
+            <nav class="p-4">
+                <ul>
+                    <li class="mb-1">
+                        <a href="#" class="flex items-center p-2 rounded-md sidebar-active">
+                            <img src="icon.png" alt="首页" class="w-5 h-5 mr-3">
+                            <span>首页</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="#" class="flex items-center p-2 rounded-md hover:bg-gray-100">
+                            <img src="https://bbs.hycdn.cn/asset/sticker/1d686e39ecbd7064a8ff0671dca15d8d.webp" alt="干员" class="w-5 h-5 mr-3">
+                            <span>干员</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="#" class="flex items-center p-2 rounded-md hover:bg-gray-100">
+                            <img src="https://bbs.hycdn.cn/asset/sticker/3a11bb7df6487dd4e31b45eaa6688cfd.webp" alt="武器" class="w-5 h-5 mr-3">
+                            <span>武器</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="#" class="flex items-center p-2 rounded-md hover:bg-gray-100">
+                            <img src="https://bbs.hycdn.cn/asset/sticker/6da788143f34d24cc6a59e262ca9f42a.webp" alt="装备" class="w-5 h-5 mr-3">
+                            <span>装备</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="#" class="flex items-center p-2 rounded-md hover:bg-gray-100">
+                            <img src="https://bbs.hycdn.cn/asset/sticker/30ff7119fb41b7673ae036087893dd1a.webp" alt="敌人" class="w-5 h-5 mr-3">
+                            <span>敌人</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="#" class="flex items-center p-2 rounded-md hover:bg-gray-100">
+                            <img src="https://bbs.hycdn.cn/asset/sticker/75e5264b1baad26ca903997285ca0e6d.webp" alt="剧情" class="w-5 h-5 mr-3">
+                            <span>剧情</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="#" class="flex items-center p-2 rounded-md hover:bg-gray-100">
+                            <img src="https://bbs.hycdn.cn/asset/sticker/a15babac33453fdf6bea6158ec933081.webp" alt="计算器" class="w-5 h-5 mr-3">
+                            <span>计算器</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="mt-8 pt-4 border-t">
+                    <h3 class="text-xs uppercase text-gray-500 font-semibold mb-2">快捷链接</h3>
+                    <ul>
+                        <li class="mb-1">
+                            <a href="#" class="flex items-center p-2 rounded-md hover:bg-gray-100">
+                                <i class="fa fa-question-circle sidebar-icon"></i>
+                                <span>帮助中心</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="#" class="flex items-center p-2 rounded-md hover:bg-gray-100">
+                                <i class="fa fa-envelope sidebar-icon"></i>
+                                <span>联系我们</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+        
+        <!-- 主内容区域 -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- 顶部导航栏 -->
+            <header class="bg-white shadow-sm">
+                <div class="flex items-center justify-between p-4">
+                    <div class="flex items-center">
+                        <button id="sidebar-toggle" class="md:hidden mr-4 text-gray-500">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <h2 class="text-lg font-semibold">首页</h2>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="relative mr-4">
+                            <input type="text" placeholder="搜索..." class="pl-10 pr-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <i class="fa fa-search absolute left-3 top-3 text-gray-400"></i>
+                        </div>
+                        <div class="relative">
+                            <button class="flex items-center text-gray-700">
+                                <img src="https://p11-doubao-search-sign.byteimg.com/labis/9650442d0f7d875c65277892d0458ae0~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1787203452&x-signature=3ig6XCLlKduvGhxg4PYlLj9JUa8%3D" alt="用户头像" class="w-8 h-8 rounded-full mr-2">
+                                <span>管理员</span>
+                                <i class="fa fa-caret-down ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- 内容区域 -->
+            <main class="flex-1 overflow-y-auto p-4 bg-gray-100">
+                <!-- 顶部图标网格 -->
+                <h2 class="text-lg font-semibold mb-4">快捷导航</h2>
+                <div class="grid grid-cols-2 md:grid-cols-6 gap-4 mb-6">
+                    <div class="bg-white p-4 rounded-lg shadow-sm text-center card-hover cursor-pointer">
+                        <img src="https://bbs.hycdn.cn/asset/sticker/1d686e39ecbd7064a8ff0671dca15d8d.webp" alt="干员" class="w-12 h-12 mx-auto mb-2">
+                        <span class="text-sm">干员</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm text-center card-hover cursor-pointer">
+                        <img src="https://bbs.hycdn.cn/asset/sticker/3a11bb7df6487dd4e31b45eaa6688cfd.webp" alt="武器" class="w-12 h-12 mx-auto mb-2">
+                        <span class="text-sm">武器</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm text-center card-hover cursor-pointer">
+                        <img src="https://bbs.hycdn.cn/asset/sticker/6da788143f34d24cc6a59e262ca9f42a.webp" alt="装备" class="w-12 h-12 mx-auto mb-2">
+                        <span class="text-sm">装备</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm text-center card-hover cursor-pointer">
+                        <img src="https://bbs.hycdn.cn/asset/sticker/30ff7119fb41b7673ae036087893dd1a.webp" alt="敌人" class="w-12 h-12 mx-auto mb-2">
+                        <span class="text-sm">敌人</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm text-center card-hover cursor-pointer">
+                        <img src="https://bbs.hycdn.cn/asset/sticker/75e5264b1baad26ca903997285ca0e6d.webp" alt="剧情" class="w-12 h-12 mx-auto mb-2">
+                        <span class="text-sm">剧情</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm text-center card-hover cursor-pointer">
+                        <img src="https://bbs.hycdn.cn/asset/sticker/a15babac33453fdf6bea6158ec933081.webp" alt="计算器" class="w-12 h-12 mx-auto mb-2">
+                        <span class="text-sm">计算器</span>
+                    </div>
+                </div>
+                
+                <!-- 中部内容区 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-white p-4 rounded-lg shadow-sm card-hover">
+                        <h3 class="text-lg font-semibold mb-4">🌋 高危敌人数据</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium">"腐败异端" 防御</span>
+                                    <span class="text-sm font-medium text-warning">B (实际: 450)</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-value bg-warning" style="width: 65%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium">"残损行者" 法抗</span>
+                                    <span class="text-sm font-medium text-info">A (实际: 55%)</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-value bg-info" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium">"机械守卫" 生命值</span>
+                                    <span class="text-sm font-medium text-danger">S (实际: 8000)</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-value bg-danger" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2">*点击查看完整敌人图鉴与详细数据</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded-lg shadow-sm card-hover">
+                        <h3 class="text-lg font-semibold mb-4">📜 剧情回顾·最新章节</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-3">
+                                    <i class="fa fa-book text-purple-500"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium">EP-12: 塔卫工业区</p>
+                                    <p class="text-xs text-gray-500">已为您整理关键对话与过场</p>
+                                </div>
+                                <span class="text-sm font-medium text-primary">阅读</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                    <i class="fa fa-book text-blue-500"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium">EP-11: 源石矿脉</p>
+                                    <p class="text-xs text-gray-500">探索队遭遇未知敌人</p>
+                                </div>
+                                <span class="text-sm font-medium text-primary">阅读</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                                    <i class="fa fa-book text-green-500"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium">EP-10: 移动城市</p>
+                                    <p class="text-xs text-gray-500">新干员加入探索队</p>
+                                </div>
+                                <span class="text-sm font-medium text-primary">阅读</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded-lg shadow-sm card-hover">
+                        <h3 class="text-lg font-semibold mb-4">👥 干员列表预览</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fa fa-user text-blue-500"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium">陈·塔卫</p>
+                                    <p class="text-xs text-gray-500">精英二阶 | 近卫</p>
+                                </div>
+                                <span class="text-sm font-medium text-primary">详情</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fa fa-user text-purple-500"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium">佩丽卡</p>
+                                    <p class="text-xs text-gray-500">精英一阶 | 射手</p>
+                                </div>
+                                <span class="text-sm font-medium text-primary">详情</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fa fa-user text-green-500"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium">维克托</p>
+                                    <p class="text-xs text-gray-500">精英二阶 | 重装</p>
+                                </div>
+                                <span class="text-sm font-medium text-primary">详情</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded-lg shadow-sm card-hover">
+                        <h3 class="text-lg font-semibold mb-4">📊 站点统计</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span class="text-sm">今日更新条目</span>
+                                <span class="text-sm font-medium">12</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-sm">总干员数</span>
+                                <span class="text-sm font-medium">45</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-sm">总武器数</span>
+                                <span class="text-sm font-medium">89</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-sm">总敌人种类</span>
+                                <span class="text-sm font-medium">67</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-sm">剧情章节数</span>
+                                <span class="text-sm font-medium">12</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 底部内容区 -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                    <div class="lg:col-span-2 bg-white p-4 rounded-lg shadow-sm card-hover">
+                        <h3 class="text-lg font-semibold mb-4">🧮 伤害计算器</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-sm mb-1">攻击方（干员）</label>
+                                <select id="attacker" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    <option value="chen">陈·塔卫（精二）</option>
+                                    <option value="perica">佩丽卡</option>
+                                    <option value="victor">维克托</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">防御方（敌人）</label>
+                                <select id="defender" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    <option value="corrupted">腐败异端 (450防)</option>
+                                    <option value="withered">残损行者 (55%法抗)</option>
+                                    <option value="mechanical">机械守卫 (8000血)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <button id="calculate-btn" class="bg-primary text-white px-4 py-2 rounded hover:bg-blue-600">计算伤害</button>
+                            <span id="result" class="ml-4 text-lg font-bold">预计伤害: 0</span>
+                        </div>
+                        <div class="p-3 bg-gray-50 rounded">
+                            <p class="text-xs text-gray-500">* 伤害计算基于当前干员和敌人的基础属性，实际伤害可能因技能、 buff 等因素有所不同。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded-lg shadow-sm card-hover">
+                        <h3 class="text-lg font-semibold mb-4">⚔️ 敌人属性对比</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm">腐败异端</span>
+                                    <span class="text-sm">防御: 450</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-value bg-warning" style="width: 65%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm">残损行者</span>
+                                    <span class="text-sm">法抗: 55%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-value bg-info" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm">机械守卫</span>
+                                    <span class="text-sm">生命值: 8000</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-value bg-danger" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm">源石虫</span>
+                                    <span class="text-sm">移速: 1.2</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-value bg-success" style="width: 40%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- 移动端侧边栏 -->
+    <div id="mobile-sidebar" class="fixed inset-0 bg-gray-900 bg-opacity-50 z-40 hidden">
+        <div class="w-64 h-full bg-white shadow-lg transform -translate-x-full transition-transform duration-300" id="mobile-sidebar-content">
+            <!-- 品牌区域 -->
+            <div class="p-4 border-b flex justify-between items-center">
+                <div class="flex items-center">
+                    <img src="icon.png" alt="AICwiki" class="w-8 h-8 mr-2">
+                    <div>
+                        <h1 class="text-xl font-bold text-primary">AICwiki</h1>
+                        <p class="text-xs text-gray-500">明日方舟：终末地 Wiki</p>
+                    </div>
+                </div>
+                <button id="close-sidebar" class="text-gray-500">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- 导航菜单 -->
+            <nav class="p-4">
+                <ul>
+                    <li class="mb-1">
+                        <a href="#" class="flex items-center p-2 rounded-md sidebar-active">
+                            <img src="icon.png" alt="首页" class="w-5 h-5 mr-3">
+                            <span>首页</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="#" class="flex items-center p-2 rounded-md hover:bg-gray-100">
+                            <img src="https://bbs.hycdn.cn/asset/sticker/1d686e39ecbd7064a8ff0671dca15d8d.webp" alt="干员" class="w-5 h-5 mr-3">
+                            <span>干员</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="#" class="flex items-center p-2 rounded-md hover:bg-gray-100">
+                            <img src="https://bbs.hycdn.cn/asset/sticker/3a11bb7df6487dd4e31b45eaa6688cfd.webp" alt="武器" class="w-5 h-5 mr-3">
+                            <span>武器</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="#" class="flex items-center p-2 rounded-md hover:bg-gray-100">
+                            <img src="https://bbs.hycdn.cn/asset/sticker/6da788143f34d24cc6a59e262ca9f42a.webp" alt="装备" class="w-5 h-5 mr-3">
+                            <span>装备</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="#" class="flex items-center p-2 rounded-md hover:bg-gray-100">
+                            <img src="https://bbs.hycdn.cn/asset/sticker/30ff7119fb41b7673ae036087893dd1a.webp" alt="敌人" class="w-5 h-5 mr-3">
+                            <span>敌人</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="#" class="flex items-center p-2 rounded-md hover:bg-gray-100">
+                            <img src="https://bbs.hycdn.cn/asset/sticker/75e5264b1baad26ca903997285ca0e6d.webp" alt="剧情" class="w-5 h-5 mr-3">
+                            <span>剧情</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="#" class="flex items-center p-2 rounded-md hover:bg-gray-100">
+                            <img src="https://bbs.hycdn.cn/asset/sticker/a15babac33453fdf6bea6158ec933081.webp" alt="计算器" class="w-5 h-5 mr-3">
+                            <span>计算器</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="mt-8 pt-4 border-t">
+                    <h3 class="text-xs uppercase text-gray-500 font-semibold mb-2">快捷链接</h3>
+                    <ul>
+                        <li class="mb-1">
+                            <a href="#" class="flex items-center p-2 rounded-md hover:bg-gray-100">
+                                <i class="fa fa-question-circle sidebar-icon"></i>
+                                <span>帮助中心</span>
+                            </a>
+                        </li>
+                        <li class="mb-1">
+                            <a href="#" class="flex items-center p-2 rounded-md hover:bg-gray-100">
+                                <i class="fa fa-envelope sidebar-icon"></i>
+                                <span>联系我们</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    
+    <script>
+        // 侧边栏切换
+        document.getElementById('sidebar-toggle').addEventListener('click', function() {
+            const mobileSidebar = document.getElementById('mobile-sidebar');
+            const mobileSidebarContent = document.getElementById('mobile-sidebar-content');
+            
+            mobileSidebar.classList.remove('hidden');
+            setTimeout(() => {
+                mobileSidebarContent.classList.remove('-translate-x-full');
+            }, 10);
+        });
+        
+        // 关闭侧边栏
+        document.getElementById('close-sidebar').addEventListener('click', function() {
+            const mobileSidebar = document.getElementById('mobile-sidebar');
+            const mobileSidebarContent = document.getElementById('mobile-sidebar-content');
+            
+            mobileSidebarContent.classList.add('-translate-x-full');
+            setTimeout(() => {
+                mobileSidebar.classList.add('hidden');
+            }, 300);
+        });
+        
+        // 点击遮罩层关闭侧边栏
+        document.getElementById('mobile-sidebar').addEventListener('click', function(e) {
+            if (e.target === this) {
+                const mobileSidebarContent = document.getElementById('mobile-sidebar-content');
+                
+                mobileSidebarContent.classList.add('-translate-x-full');
+                setTimeout(() => {
+                    this.classList.add('hidden');
+                }, 300);
+            }
+        });
+        
+        // 进度条动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBars = document.querySelectorAll('.progress-value');
+            
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                
+                setTimeout(() => {
+                    bar.style.width = width;
+                    bar.style.transition = 'width 1s ease-in-out';
+                }, 100);
+            });
+        });
+        
+        // 导航菜单点击事件
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // 移除所有激活状态
+                document.querySelectorAll('nav a').forEach(item => {
+                    item.classList.remove('sidebar-active');
+                    item.classList.add('hover:bg-gray-100');
+                });
+                
+                // 添加激活状态
+                this.classList.add('sidebar-active');
+                this.classList.remove('hover:bg-gray-100');
+                
+                // 如果是移动端，点击后关闭侧边栏
+                const mobileSidebar = document.getElementById('mobile-sidebar');
+                if (!mobileSidebar.classList.contains('hidden')) {
+                    const mobileSidebarContent = document.getElementById('mobile-sidebar-content');
+                    
+                    mobileSidebarContent.classList.add('-translate-x-full');
+                    setTimeout(() => {
+                        mobileSidebar.classList.add('hidden');
+                    }, 300);
+                }
+            });
+        });
+        
+        // 伤害计算器逻辑
+        const calculateBtn = document.getElementById('calculate-btn');
+        const attackerSelect = document.getElementById('attacker');
+        const defenderSelect = document.getElementById('defender');
+        const resultElement = document.getElementById('result');
+        
+        // 干员基础攻击力数据
+        const operators = {
+            chen: 850,      // 陈·塔卫
+            perica: 650,    // 佩丽卡
+            victor: 450     // 维克托
+        };
+        
+        // 敌人防御和法抗数据
+        const enemies = {
+            corrupted: { def: 450, res: 10 },    // 腐败异端
+            withered: { def: 200, res: 55 },      // 残损行者
+            mechanical: { def: 600, res: 20 }     // 机械守卫
+        };
+        
+        // 计算伤害函数
+        function calculateDamage() {
+            const attacker = attackerSelect.value;
+            const defender = defenderSelect.value;
+            
+            const attack = operators[attacker];
+            const enemy = enemies[defender];
+            
+            // 简单的伤害计算公式：攻击 - 防御（最小伤害为攻击的10%）
+            let damage = Math.max(attack * 0.1, attack - enemy.def);
+            
+            // 应用法抗（假设所有攻击都是法术伤害）
+            damage = damage * (1 - enemy.res / 100);
+            
+            // 四舍五入到整数
+            damage = Math.round(damage);
+            
+            // 更新结果显示
+            resultElement.textContent = `预计伤害: ${damage}`;
+        }
+        
+        // 绑定计算按钮点击事件
+        if (calculateBtn) {
+            calculateBtn.addEventListener('click', calculateDamage);
+        }
+        
+        // 为卡片添加点击效果
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('click', function() {
+                // 添加点击效果
+                this.classList.add('scale-95');
+                setTimeout(() => {
+                    this.classList.remove('scale-95');
+                }, 150);
+                
+                // 如果是图标卡片，显示提示信息
+                if (this.querySelector('span') && (this.querySelector('i') || this.querySelector('img'))) {
+                    const iconName = this.querySelector('span').textContent;
+                    alert(`您点击了"${iconName}"功能`);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
