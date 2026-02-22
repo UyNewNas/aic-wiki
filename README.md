@@ -21,8 +21,6 @@
 
 <!-- markdownlint-restore -->
 
-[简体中文](https://docs.maa.plus/zh-cn/) | [繁體中文](https://docs.maa.plus/zh-tw/) | [English](https://docs.maa.plus/en-us/) | [日本語](https://docs.maa.plus/ja-jp/) | [한국어](https://docs.maa.plus/ko-kr/)
-
 AIC的意思是集成工业系统(Automated Industry Complex)
 <p>一个基于 Github Pages 的 明日方舟：终末地 Wiki 站</p>
 绝赞更新中 ✿✿ヽ(°▽°)ノ✿
