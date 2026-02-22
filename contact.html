@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICwiki - 联系我们</title>
+    <!-- 网站图标 -->
+    <link rel="icon" href="icon.png" type="image/png">
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 统一的 Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a56db',
+                        secondary: '#6b7280',
+                        success: '#10b981',
+                        danger: '#ef4444',
+                        warning: '#f59e0b',
+                        info: '#3b82f6',
+                        light: '#f3f4f6',
+                        dark: '#374151',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .sidebar-active {
+                @apply bg-primary text-white;
+            }
+            .sidebar-icon {
+                @apply mr-3 text-lg;
+            }
+            .card-hover {
+                @apply transition-all duration-300 hover:shadow-lg;
+            }
+            .progress-bar {
+                @apply h-2 rounded-full bg-gray-200 overflow-hidden;
+            }
+            .progress-value {
+                @apply h-full rounded-full;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="flex h-screen overflow-hidden">
+        <!-- 左侧导航栏容器 -->
+        <div id="sidebar-container"></div>
+        
+        <!-- 主内容区域 -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- 顶部导航栏容器 -->
+            <div id="header-container"></div>
+            
+            <!-- 内容区域 -->
+            <main class="flex-1 overflow-y-auto p-4 bg-gray-100">
+                <!-- 页面标题 -->
+                <h1 class="text-2xl font-bold mb-6">联系我们</h1>
+                
+                <!-- 联系表单 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                    <h2 class="text-xl font-semibold mb-4">发送消息</h2>
+                    <form>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">姓名</label>
+                                <input type="text" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">邮箱</label>
+                                <input type="email" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">主题</label>
+                            <select class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="">请选择主题</option>
+                                <option value="feedback">反馈建议</option>
+                                <option value="bug">报告错误</option>
+                                <option value="contribution">内容贡献</option>
+                                <option value="other">其他问题</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">消息内容</label>
+                            <textarea rows="5" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="submit" class="px-4 py-2 bg-primary text-white rounded hover:bg-blue-600">
+                                <i class="fa fa-paper-plane mr-2"></i> 发送消息
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- 联系信息 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                    <h2 class="text-xl font-semibold mb-4">联系信息</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="border rounded-lg p-4">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fa fa-envelope text-blue-500"></i>
+                                </div>
+                                <h3 class="text-lg font-medium">邮箱</h3>
+                            </div>
+                            <p class="text-gray-600">support@aicwiki.com</p>
+                        </div>
+                        <div class="border rounded-lg p-4">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fa fa-weixin text-green-500"></i>
+                                </div>
+                                <h3 class="text-lg font-medium">微信</h3>
+                            </div>
+                            <p class="text-gray-600">AICwikiOfficial</p>
+                        </div>
+                        <div class="border rounded-lg p-4">
+                            <div class="flex items-center mb-3">
+                                <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fa fa-github text-purple-500"></i>
+                                </div>
+                                <h3 class="text-lg font-medium">GitHub</h3>
+                            </div>
+                            <p class="text-gray-600">github.com/aicwiki</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 常见问题链接 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h2 class="text-xl font-semibold mb-4">常见问题</h2>
+                    <p class="text-gray-600 mb-4">如果您有常见问题，可能可以在我们的帮助中心找到答案：</p>
+                    <a href="help.html" class="inline-flex items-center px-4 py-2 bg-primary text-white rounded hover:bg-blue-600">
+                        <i class="fa fa-question-circle mr-2"></i> 访问帮助中心
+                    </a>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- 移动端侧边栏容器 -->
+    <div id="mobile-sidebar-container"></div>
+    
+    <script src="js/components.js" defer></script>
+    <script src="js/load-components.js" defer></script>
+</body>
+</html>

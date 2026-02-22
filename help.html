@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICwiki - 帮助中心</title>
+    <!-- 网站图标 -->
+    <link rel="icon" href="icon.png" type="image/png">
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 统一的 Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a56db',
+                        secondary: '#6b7280',
+                        success: '#10b981',
+                        danger: '#ef4444',
+                        warning: '#f59e0b',
+                        info: '#3b82f6',
+                        light: '#f3f4f6',
+                        dark: '#374151',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .sidebar-active {
+                @apply bg-primary text-white;
+            }
+            .sidebar-icon {
+                @apply mr-3 text-lg;
+            }
+            .card-hover {
+                @apply transition-all duration-300 hover:shadow-lg;
+            }
+            .progress-bar {
+                @apply h-2 rounded-full bg-gray-200 overflow-hidden;
+            }
+            .progress-value {
+                @apply h-full rounded-full;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="flex h-screen overflow-hidden">
+        <!-- 左侧导航栏容器 -->
+        <div id="sidebar-container"></div>
+        
+        <!-- 主内容区域 -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- 顶部导航栏容器 -->
+            <div id="header-container"></div>
+            
+            <!-- 内容区域 -->
+            <main class="flex-1 overflow-y-auto p-4 bg-gray-100">
+                <!-- 页面标题 -->
+                <h1 class="text-2xl font-bold mb-6">帮助中心</h1>
+                
+                <!-- 帮助内容 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                    <h2 class="text-xl font-semibold mb-4">常见问题</h2>
+                    <div class="space-y-4">
+                        <div class="border-b pb-4">
+                            <h3 class="text-lg font-medium mb-2">如何使用干员筛选功能？</h3>
+                            <p class="text-gray-600">在干员页面，您可以使用顶部的筛选器按照职业、稀有度、位置和阵营进行筛选。选择筛选条件后，点击"应用筛选"按钮即可查看筛选结果。</p>
+                        </div>
+                        <div class="border-b pb-4">
+                            <h3 class="text-lg font-medium mb-2">如何查看干员详细信息？</h3>
+                            <p class="text-gray-600">在干员列表中，点击每个干员卡片下方的"查看详情"链接，即可进入干员的详细信息页面。</p>
+                        </div>
+                        <div class="border-b pb-4">
+                            <h3 class="text-lg font-medium mb-2">如何使用伤害计算器？</h3>
+                            <p class="text-gray-600">在计算器页面，选择攻击方和防御方，点击"计算伤害"按钮，即可查看预计伤害值。</p>
+                        </div>
+                        <div class="border-b pb-4">
+                            <h3 class="text-lg font-medium mb-2">如何贡献内容？</h3>
+                            <p class="text-gray-600">如果您想为Wiki贡献内容，请联系我们的管理员团队，我们会为您提供相关指导。</p>
+                        </div>
+                        <div class="border-b pb-4">
+                            <h3 class="text-lg font-medium mb-2">如何报告错误？</h3>
+                            <p class="text-gray-600">如果您发现页面上的错误或问题，请通过"联系我们"页面提交报告，我们会尽快处理。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                    <h2 class="text-xl font-semibold mb-4">使用指南</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="border rounded-lg p-4">
+                            <h3 class="text-lg font-medium mb-2">新手入门</h3>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li>了解Wiki基本结构</li>
+                                <li>如何搜索内容</li>
+                                <li>如何导航到不同页面</li>
+                                <li>如何使用筛选功能</li>
+                            </ul>
+                        </div>
+                        <div class="border rounded-lg p-4">
+                            <h3 class="text-lg font-medium mb-2">进阶功能</h3>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li>使用伤害计算器</li>
+                                <li>查看干员详细属性</li>
+                                <li>了解敌人弱点</li>
+                                <li>浏览剧情内容</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h2 class="text-xl font-semibold mb-4">联系支持</h2>
+                    <p class="text-gray-600 mb-4">如果您有任何其他问题或需要帮助，请通过以下方式联系我们的支持团队：</p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="contact.html" class="inline-flex items-center px-4 py-2 bg-primary text-white rounded hover:bg-blue-600">
+                            <i class="fa fa-envelope mr-2"></i> 联系我们
+                        </a>
+                        <a href="#" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded hover:bg-gray-100">
+                            <i class="fa fa-question-circle mr-2"></i> 常见问题
+                        </a>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- 移动端侧边栏容器 -->
+    <div id="mobile-sidebar-container"></div>
+    
+    <script src="js/components.js" defer></script>
+    <script src="js/load-components.js" defer></script>
+</body>
+</html>

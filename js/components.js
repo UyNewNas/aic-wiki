@@ -60,22 +60,34 @@ const sidebarHTML = `
         </ul>
         
         <div class="mt-8 pt-4 border-t">
-            <h3 class="text-xs uppercase text-gray-500 font-semibold mb-2">快捷链接</h3>
-            <ul>
-                <li class="mb-1">
-                    <a href="help.html" class="flex items-center p-2 rounded-md hover:bg-gray-100">
-                        <i class="fa fa-question-circle sidebar-icon"></i>
-                        <span>帮助中心</span>
-                    </a>
-                </li>
-                <li class="mb-1">
-                    <a href="contact.html" class="flex items-center p-2 rounded-md hover:bg-gray-100">
-                        <i class="fa fa-envelope sidebar-icon"></i>
-                        <span>联系我们</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+                <h3 class="text-xs uppercase text-gray-500 font-semibold mb-2">快捷链接</h3>
+                <ul>
+                    <li class="mb-1">
+                        <a href="help.html" class="flex items-center p-2 rounded-md hover:bg-gray-100">
+                            <i class="fa fa-question-circle sidebar-icon"></i>
+                            <span>帮助中心</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="contact.html" class="flex items-center p-2 rounded-md hover:bg-gray-100">
+                            <i class="fa fa-envelope sidebar-icon"></i>
+                            <span>联系我们</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="https://github.com/UyNewNas/aic-wiki" target="_blank" class="flex items-center p-2 rounded-md hover:bg-gray-100">
+                            <i class="fa fa-github sidebar-icon"></i>
+                            <span>GitHub</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="copyright.html" class="flex items-center p-2 rounded-md hover:bg-gray-100">
+                            <i class="fa fa-copyright sidebar-icon"></i>
+                            <span>版权声明</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
     </nav>
 </aside>
 `;
@@ -185,9 +197,22 @@ const mobileSidebarHTML = `
                             <span>联系我们</span>
                         </a>
                     </li>
+                    <li class="mb-1">
+                        <a href="https://github.com/UyNewNas/aic-wiki" target="_blank" class="flex items-center p-2 rounded-md hover:bg-gray-100">
+                            <i class="fa fa-github sidebar-icon"></i>
+                            <span>GitHub</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="copyright.html" class="flex items-center p-2 rounded-md hover:bg-gray-100">
+                            <i class="fa fa-copyright sidebar-icon"></i>
+                            <span>版权声明</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>
     </div>
 </div>
 `;
+

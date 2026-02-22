@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICwiki - 版权声明</title>
+    <!-- 网站图标 -->
+    <link rel="icon" href="icon.png" type="image/png">
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 统一的 Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a56db',
+                        secondary: '#6b7280',
+                        success: '#10b981',
+                        danger: '#ef4444',
+                        warning: '#f59e0b',
+                        info: '#3b82f6',
+                        light: '#f3f4f6',
+                        dark: '#374151',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .sidebar-active {
+                @apply bg-primary text-white;
+            }
+            .sidebar-icon {
+                @apply mr-3 text-lg;
+            }
+            .card-hover {
+                @apply transition-all duration-300 hover:shadow-lg;
+            }
+            .progress-bar {
+                @apply h-2 rounded-full bg-gray-200 overflow-hidden;
+            }
+            .progress-value {
+                @apply h-full rounded-full;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="flex h-screen overflow-hidden">
+        <!-- 左侧导航栏容器 -->
+        <div id="sidebar-container"></div>
+        
+        <!-- 主内容区域 -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- 顶部导航栏容器 -->
+            <div id="header-container"></div>
+            
+            <!-- 内容区域 -->
+            <main class="flex-1 overflow-y-auto p-4 bg-gray-100">
+                <!-- 页面标题 -->
+                <h1 class="text-2xl font-bold mb-6">版权声明</h1>
+                
+                <!-- 版权声明内容 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                    <div class="space-y-4">
+                        <p class="text-gray-700">
+                            本网站是由《明日方舟：终末地》游戏爱好者，使用现代网页技术精心制作。网站所涉及的公司名称、商标、产品等均为其各自所有者的资产，仅供识别。
+                        </p>
+                        <p class="text-gray-700">
+                            网站内使用的游戏图片、动画、音频、文本原文，仅用于更好地表现游戏资料，其版权属于上海鹰角网络科技有限公司及其关联公司。
+                        </p>
+                        <p class="text-gray-700">
+                            除非另有声明，网站其他内容采用知识共享署名-非商业性使用-相同方式共享授权。
+                        </p>
+                        <p class="text-gray-700 mt-6">
+                            <strong>免责声明：</strong>
+                        </p>
+                        <p class="text-gray-700">
+                            本网站仅为游戏爱好者交流学习之用，不用于任何商业目的。如涉及侵权，请联系我们删除相关内容。
+                        </p>
+                        <p class="text-gray-700">
+                            网站内容仅供参考，不代表官方立场。游戏相关信息请以官方公告为准。
+                        </p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- 移动端侧边栏容器 -->
+    <div id="mobile-sidebar-container"></div>
+    
+    <script src="js/components.js" defer></script>
+    <script src="js/load-components.js" defer></script>
+</body>
+</html>

@@ -79,7 +79,8 @@ function setPageTitle() {
         'story.html': '剧情',
         'calculator.html': '计算器',
         'help.html': '帮助中心',
-        'contact.html': '联系我们'
+        'contact.html': '联系我们',
+        'copyright.html': '版权声明'
     };
     
     const titleElement = document.querySelector('header h2');
@@ -87,6 +88,8 @@ function setPageTitle() {
         titleElement.textContent = pageTitles[currentPage] || '页面标题';
     }
 }
+
+
 
 // 加载所有组件
 document.addEventListener('DOMContentLoaded', () => {
