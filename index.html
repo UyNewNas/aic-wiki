@@ -70,30 +70,30 @@
                 <!-- 顶部图标网格 -->
                 <h2 class="text-lg font-semibold mb-4">快捷导航</h2>
                 <div class="grid grid-cols-2 md:grid-cols-6 gap-4 mb-6">
-                    <div class="bg-white p-4 rounded-lg shadow-sm text-center card-hover cursor-pointer">
+                    <a href="operators.html" class="bg-white p-4 rounded-lg shadow-sm text-center card-hover">
                         <img src="./images/1d686e39ecbd7064a8ff0671dca15d8d.webp" alt="干员" class="w-12 h-12 mx-auto mb-2">
                         <span class="text-sm">干员</span>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg shadow-sm text-center card-hover cursor-pointer">
+                    </a>
+                    <a href="weapons.html" class="bg-white p-4 rounded-lg shadow-sm text-center card-hover">
                         <img src="./images/3a11bb7df6487dd4e31b45eaa6688cfd.webp" alt="武器" class="w-12 h-12 mx-auto mb-2">
                         <span class="text-sm">武器</span>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg shadow-sm text-center card-hover cursor-pointer">
+                    </a>
+                    <a href="equipment.html" class="bg-white p-4 rounded-lg shadow-sm text-center card-hover">
                         <img src="./images/6da788143f34d24cc6a59e262ca9f42a.webp" alt="装备" class="w-12 h-12 mx-auto mb-2">
                         <span class="text-sm">装备</span>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg shadow-sm text-center card-hover cursor-pointer">
+                    </a>
+                    <a href="enemies.html" class="bg-white p-4 rounded-lg shadow-sm text-center card-hover">
                         <img src="./images/30ff7119fb41b7673ae036087893dd1a.webp" alt="敌人" class="w-12 h-12 mx-auto mb-2">
                         <span class="text-sm">敌人</span>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg shadow-sm text-center card-hover cursor-pointer">
+                    </a>
+                    <a href="story.html" class="bg-white p-4 rounded-lg shadow-sm text-center card-hover">
                         <img src="./images/75e5264b1baad26ca903997285ca0e6d.webp" alt="剧情" class="w-12 h-12 mx-auto mb-2">
                         <span class="text-sm">剧情</span>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg shadow-sm text-center card-hover cursor-pointer">
+                    </a>
+                    <a href="calculator.html" class="bg-white p-4 rounded-lg shadow-sm text-center card-hover">
                         <img src="./images/a15babac33453fdf6bea6158ec933081.webp" alt="计算器" class="w-12 h-12 mx-auto mb-2">
                         <span class="text-sm">计算器</span>
-                    </div>
+                    </a>
                 </div>
                 
                 <!-- 中部内容区 -->
@@ -384,12 +384,6 @@
                 setTimeout(() => {
                     this.classList.remove('scale-95');
                 }, 150);
-                
-                // 如果是图标卡片，显示提示信息
-                if (this.querySelector('span') && (this.querySelector('i') || this.querySelector('img'))) {
-                    const iconName = this.querySelector('span').textContent;
-                    alert(`您点击了"${iconName}"功能`);
-                }
             });
         });
     </script>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICwiki - 明日方舟：终末地 Wiki</title>
+    <!-- 网站图标 -->
+    <link rel="icon" href="icon.png" type="image/png">
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 统一的 Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a56db',
+                        secondary: '#6b7280',
+                        success: '#10b981',
+                        danger: '#ef4444',
+                        warning: '#f59e0b',
+                        info: '#3b82f6',
+                        light: '#f3f4f6',
+                        dark: '#374151',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .sidebar-active {
+                @apply bg-primary text-white;
+            }
+            .sidebar-icon {
+                @apply mr-3 text-lg;
+            }
+            .card-hover {
+                @apply transition-all duration-300 hover:shadow-lg;
+            }
+            .progress-bar {
+                @apply h-2 rounded-full bg-gray-200 overflow-hidden;
+            }
+            .progress-value {
+                @apply h-full rounded-full;
+            }
+            .tab-active {
+                @apply border-b-2 border-primary text-primary font-medium;
+            }
+            .ability-bar {
+                @apply h-3 rounded-full bg-gray-200 overflow-hidden;
+            }
+            .ability-value {
+                @apply h-full rounded-full;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="flex h-screen overflow-hidden">
+        <!-- 左侧导航栏容器 -->
+        <div id="sidebar-container"></div>
+        
+        <!-- 主内容区域 -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- 顶部导航栏容器 -->
+            <div id="header-container"></div>
+            
+            <!-- 内容区域 -->
+            <main class="flex-1 overflow-y-auto p-4 bg-gray-100 relative">
+                <!-- 头像 -->
+                <div id="operator-avatar" class="absolute top-[160px] left-10 w-32 h-32 bg-white rounded-full border-4 shadow-lg flex items-center justify-center z-50">
+                    <i class="fa fa-user text-4xl text-primary/30"></i>
+                </div>
+                
+                <!-- 返回按钮 -->
+                <div class="mb-4">
+                    <a href="operators.html" class="inline-flex items-center text-sm text-primary hover:underline">
+                        <i class="fa fa-arrow-left mr-1"></i> 返回干员列表
+                    </a>
+                </div>
+                
+                <!-- 干员头部信息 -->
+                <div class="bg-white rounded-lg shadow-sm mb-6">
+                    <div class="relative">
+                        <!-- 背景图 -->
+                        <div class="h-40 bg-primary/20 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-transparent flex items-center">
+                                <div class="p-6 text-white pt-2">
+                                    <h1 class="text-xl font-bold" id="operator-name">干员名字</h1>
+                                    <p class="text-sm opacity-90" id="operator-class">6星 术师</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 基本信息 -->
+                    <div class="pt-20 pb-4 px-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">代号</h3>
+                                <p id="operator-code" class="text-sm">狼卫</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">性别</h3>
+                                <p id="operator-gender" class="text-sm">男</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">身份</h3>
+                                <p id="operator-identity" class="text-sm">终末地工业</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">生日</h3>
+                                <p id="operator-birthday" class="text-sm">11月16日</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">种族</h3>
+                                <p id="operator-race" class="text-sm">鲁珀</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">属性</h3>
+                                <p id="operator-attribute" class="text-sm">灼热</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 标签页导航 -->
+                <div class="bg-white rounded-t-lg shadow-sm mb-1">
+                    <div class="flex border-b">
+                        <button class="tab-active flex-1 py-3 px-4 text-center text-sm" data-tab="overview">
+                            能力扩延
+                        </button>
+                        <button class="flex-1 py-3 px-4 text-center text-sm hover:bg-gray-50" data-tab="skills">
+                            天赋阵列
+                        </button>
+                        <button class="flex-1 py-3 px-4 text-center text-sm hover:bg-gray-50" data-tab="talents">
+                            干员潜能
+                        </button>
+                        <button class="flex-1 py-3 px-4 text-center text-sm hover:bg-gray-50" data-tab="archive">
+                            干员档案
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 标签页内容 -->
+                <div class="bg-white rounded-b-lg shadow-sm p-6 min-h-[500px]">
+                    <!-- 能力扩延标签页 -->
+                    <div id="overview-tab" class="tab-content">
+                        <!-- 表1：精英化 -->
+                        <div class="mb-8">
+                            <h2 class="text-lg font-semibold mb-4">精英化</h2>
+                            <div class="overflow-x-auto">
+                                <table class="w-full border-collapse">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="border p-2 text-center text-xs" rowspan="2">等级</th>
+                                            <th class="border p-2 text-center text-xs" colspan="2">基础数据</th>
+                                            <th class="border p-2 text-center text-xs" colspan="4">能力值</th>
+                                            <th class="border p-2 text-center text-xs" rowspan="2">需求素材</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="border p-2 text-center text-xs">基础生命值</td>
+                                            <td class="border p-2 text-center text-xs">基础攻击力</td>
+                                            <td class="border p-2 text-center text-xs">力量</td>
+                                            <td class="border p-2 text-center text-xs">敏捷</td>
+                                            <td class="border p-2 text-center text-xs">智识</td>
+                                            <td class="border p-2 text-center text-xs">意志</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="elite-data-table">
+                                        <!-- 数据将由 JavaScript 动态加载 -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- 表2：战斗技能 -->
+                        <div class="mb-8">
+                            <h2 class="text-lg font-semibold mb-4">战斗技能</h2>
+                            
+                            <!-- 子表2.1 普通攻击 -->
+                            <div class="mb-6">
+                                <h3 class="text-md font-medium mb-3">普通攻击</h3>
+                                <div class="overflow-x-auto">
+                                    <table class="w-full border-collapse">
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                <th class="border p-2 text-center text-sm">技能类型</th>
+                                                <th class="border p-2 text-center text-sm">技能名称</th>
+                                                <th class="border p-2 text-center text-sm">技能介绍</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="normal-attack-table">
+                                            <!-- 数据将由 JavaScript 动态加载 -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- 子表2.1 普通攻击等级数据 -->
+                            <div class="mb-4">
+                                <div class="overflow-x-auto">
+                                    <table class="w-full border-collapse text-sm" id="normal-attack-levels-table">
+                                        <!-- 数据将由 JavaScript 动态加载 -->
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- 子表2.2 战技 -->
+                            <div class="mb-6">
+                                <h3 class="text-md font-medium mb-3">战技</h3>
+                                <div class="overflow-x-auto">
+                                    <table class="w-full border-collapse">
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                <th class="border p-2 text-center text-sm">技能类型</th>
+                                                <th class="border p-2 text-center text-sm">技能名称</th>
+                                                <th class="border p-2 text-center text-sm">技能介绍</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tactical-skills-table">
+                                            <!-- 数据将由 JavaScript 动态加载 -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- 子表2.2 战技等级数据 -->
+                            <div class="mb-4">
+                                <div class="overflow-x-auto">
+                                    <table class="w-full border-collapse text-sm" id="tactical-skill-levels-table">
+                                        <!-- 数据将由 JavaScript 动态加载 -->
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- 子表2.3 连携技 -->
+                            <div class="mb-6">
+                                <h3 class="text-md font-medium mb-3">连携技</h3>
+                                <div class="overflow-x-auto">
+                                    <table class="w-full border-collapse">
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                <th class="border p-2 text-center text-sm">技能类型</th>
+                                                <th class="border p-2 text-center text-sm">技能名称</th>
+                                                <th class="border p-2 text-center text-sm">技能介绍</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="link-skills-table">
+                                            <!-- 数据将由 JavaScript 动态加载 -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- 子表2.3 连携技等级数据 -->
+                            <div class="mb-4">
+                                <div class="overflow-x-auto">
+                                    <table class="w-full border-collapse text-sm" id="link-skill-levels-table">
+                                        <!-- 数据将由 JavaScript 动态加载 -->
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- 子表2.4 终结技 -->
+                            <div class="mb-6">
+                                <h3 class="text-md font-medium mb-3">终结技</h3>
+                                <div class="overflow-x-auto">
+                                    <table class="w-full border-collapse">
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                <th class="border p-2 text-center text-sm">技能类型</th>
+                                                <th class="border p-2 text-center text-sm">技能名称</th>
+                                                <th class="border p-2 text-center text-sm">技能介绍</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="ultimate-skills-table">
+                                            <!-- 数据将由 JavaScript 动态加载 -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <!-- 子表2.4 终结技等级数据 -->
+                            <div class="mb-4">
+                                <div class="overflow-x-auto">
+                                    <table class="w-full border-collapse text-sm" id="ultimate-skill-levels-table">
+                                        <!-- 数据将由 JavaScript 动态加载 -->
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 天赋阵列标签页 -->
+                    <div id="skills-tab" class="tab-content hidden">
+                        <!-- 技能将由 JavaScript 动态加载 -->
+                        <div id="skills-container"></div>
+                    </div>
+                    
+                    <!-- 干员潜能标签页 -->
+                    <div id="talents-tab" class="tab-content hidden">
+                        <!-- 天赋 -->
+                        <div class="mb-8">
+                            <h2 class="text-lg font-semibold mb-4">天赋</h2>
+                            <div id="talents-container" class="space-y-4">
+                                <!-- 天赋将由 JavaScript 动态加载 -->
+                            </div>
+                        </div>
+                        
+                        <!-- 潜能 -->
+                        <div>
+                            <h2 class="text-lg font-semibold mb-4">潜能</h2>
+                            <div id="potential-container" class="space-y-4">
+                                <!-- 潜能将由 JavaScript 动态加载 -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 干员档案标签页 -->
+                    <div id="archive-tab" class="tab-content hidden">
+                        <!-- 档案信息 -->
+                        <div class="mb-6">
+                            <h2 class="text-lg font-semibold mb-4">档案信息</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <h3 class="text-sm font-medium text-gray-500 mb-1">阵营</h3>
+                                    <p id="faction-value" class="text-sm">终末地工业</p>
+                                </div>
+                                <div>
+                                    <h3 class="text-sm font-medium text-gray-500 mb-1">种族</h3>
+                                    <p id="race-value" class="text-sm">鲁珀</p>
+                                </div>
+                                <div>
+                                    <h3 class="text-sm font-medium text-gray-500 mb-1">专长</h3>
+                                    <p id="specialty-value" class="text-sm">作战技巧, 潜伏</p>
+                                </div>
+                                <div>
+                                    <h3 class="text-sm font-medium text-gray-500 mb-1">爱好</h3>
+                                    <p id="hobby-value" class="text-sm">自然, 创意</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 干员档案 -->
+                        <div>
+                            <h2 class="text-lg font-semibold mb-4">干员档案</h2>
+                            <div id="archive-container" class="space-y-6">
+                                <!-- 干员档案将由 JavaScript 动态加载 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- 移动端侧边栏容器 -->
+    <div id="mobile-sidebar-container"></div>
+    
+    <script src="js/components.js" defer></script>
+    <script src="js/load-components.js" defer></script>
+    <script src="js/operator-detail.js?v=2" defer></script>
+    <script>
+        // 从URL参数中获取干员ID，支持id和itemId参数
+        function getOperatorId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id') || urlParams.get('itemId') || '3'; // 默认加载狼卫的数据
+        }
+        
+        // 动态加载干员数据文件
+        function loadOperatorDataFile() {
+            const operatorId = getOperatorId();
+            
+            // 预定义的干员文件映射，根据实际文件命名添加
+            const operatorFiles = {
+                '3': 'operator_3_狼卫.js',
+                '4': 'operator_4_别礼.js',
+                '5': 'operator_5_佩丽卡.js',
+                '7': 'operator_7_莱万汀.js',
+                '11': 'operator_11_艾尔黛拉.js',
+                '12': 'operator_12_陈千语.js',
+                '13': 'operator_13_大潘.js',
+                '24': 'operator_24_余烬.js',
+                '57': 'operator_57_弧光.js',
+                '87': 'operator_87_阿列什.js',
+                '88': 'operator_88_艾维文娜.js',
+                '89': 'operator_89__管理员_男.js',
+                '90': 'operator_90_昼雪.js',
+                '91': 'operator_91_安塔尔.js',
+                '92': 'operator_92_萤石.js',
+                '93': 'operator_93_埃特拉.js',
+                '94': 'operator_94_卡契尔.js',
+                '95': 'operator_95_秋栗.js',
+                '130': 'operator_130_黎风.js',
+                '131': 'operator_131_骏卫.js',
+                '150': 'operator_150_赛希.js',
+                '156': 'operator_156_管理员_女.js',
+                '157': 'operator_157_伊冯.js',
+                '159': 'operator_159_洁尔佩塔.js'
+            };
+            
+            // 获取文件名
+            const fileName = operatorFiles[operatorId] || `operator_${operatorId}.js`;
+            const script = document.createElement('script');
+            // 添加版本参数以强制刷新缓存
+            script.src = `operators/${fileName}?v=${new Date().getTime()}`;
+            console.log('尝试加载干员数据文件:', script.src);
+            script.onload = function() {
+                console.log('干员数据文件加载成功:', fileName);
+                // 数据加载完成后，初始化页面
+                window.initOperatorDetail();
+            };
+            script.onerror = function() {
+                console.error('加载干员数据失败:', fileName);
+                // 显示错误信息
+                const errorElement = document.createElement('div');
+                errorElement.className = 'bg-red-50 border border-red-200 text-red-600 p-4 rounded-lg m-4';
+                errorElement.textContent = `加载干员数据失败，请检查干员ID是否正确。尝试加载的文件: operators/${fileName}`;
+                document.querySelector('main').prepend(errorElement);
+            };
+            document.head.appendChild(script);
+        }
+        
+        // 页面加载完成后加载数据文件
+        document.addEventListener('DOMContentLoaded', loadOperatorDataFile);
+    </script>
+</body>
+</html>

@@ -80,7 +80,8 @@ function setPageTitle() {
         'calculator.html': '计算器',
         'help.html': '帮助中心',
         'contact.html': '联系我们',
-        'copyright.html': '版权声明'
+        'copyright.html': '版权声明',
+        'operator-detail.html': '干员详情'
     };
     
     const titleElement = document.querySelector('header h2');

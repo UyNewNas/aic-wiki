@@ -86,7 +86,7 @@
                     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
                         <div>
                             <label class="block text-xs mb-1">干员职业</label>
-                            <select class="w-full p-1 border rounded text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <select id="class-filter" class="w-full p-1 border rounded text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
                                 <option value="all">不限</option>
                                 <option value="guard">近卫</option>
                                 <option value="caster">术师</option>
@@ -98,7 +98,7 @@
                         </div>
                         <div>
                             <label class="block text-xs mb-1">星级</label>
-                            <select class="w-full p-1 border rounded text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <select id="rarity-filter" class="w-full p-1 border rounded text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
                                 <option value="all">不限</option>
                                 <option value="1">1星</option>
                                 <option value="2">2星</option>
@@ -110,7 +110,7 @@
                         </div>
                         <div>
                             <label class="block text-xs mb-1">属性</label>
-                            <select class="w-full p-1 border rounded text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <select id="attribute-filter" class="w-full p-1 border rounded text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
                                 <option value="all">不限</option>
                                 <option value="fire">灼热</option>
                                 <option value="electric">电磁</option>
@@ -121,7 +121,7 @@
                         </div>
                         <div>
                             <label class="block text-xs mb-1">武器</label>
-                            <select class="w-full p-1 border rounded text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <select id="weapon-filter" class="w-full p-1 border rounded text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
                                 <option value="all">不限</option>
                                 <option value="staff">施术单元</option>
                                 <option value="pistol">手铳</option>
@@ -132,7 +132,7 @@
                         </div>
                         <div>
                             <label class="block text-xs mb-1">主能力</label>
-                            <select class="w-full p-1 border rounded text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <select id="main-ability-filter" class="w-full p-1 border rounded text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
                                 <option value="all">不限</option>
                                 <option value="strength">力量</option>
                                 <option value="agility">敏捷</option>
@@ -142,7 +142,7 @@
                         </div>
                         <div>
                             <label class="block text-xs mb-1">副能力</label>
-                            <select class="w-full p-1 border rounded text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <select id="sub-ability-filter" class="w-full p-1 border rounded text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
                                 <option value="all">不限</option>
                                 <option value="strength">力量</option>
                                 <option value="agility">敏捷</option>
@@ -152,11 +152,12 @@
                         </div>
                     </div>
                     <div class="mt-4 flex flex-wrap gap-2">
-                        <button class="bg-primary text-white px-4 py-2 rounded hover:bg-blue-600">应用筛选</button>
-                        <button class="border border-gray-300 px-4 py-2 rounded hover:bg-gray-100">重置</button>
-                        <button class="border border-gray-300 px-4 py-2 rounded hover:bg-gray-100">
+                        <button id="apply-filter" class="bg-primary text-white px-4 py-2 rounded hover:bg-blue-600">应用筛选</button>
+                        <button id="reset-filter" class="border border-gray-300 px-4 py-2 rounded hover:bg-gray-100">重置</button>
+                        <!-- 导出数据按钮已注释掉 -->
+                        <!-- <button class="border border-gray-300 px-4 py-2 rounded hover:bg-gray-100">
                             <i class="fa fa-download mr-1"></i> 导出数据
-                        </button>
+                        </button> -->
                     </div>
                 </div>
                 
@@ -197,6 +198,7 @@
                                         种族<br>
                                         出身地
                                     </th>
+                                    <th class="border p-2 text-center text-xs w-24">实装时间</th>
                                 </tr>
                             </thead>
                             <tbody id="operators-table-body">
