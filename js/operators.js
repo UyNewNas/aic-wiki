@@ -33,6 +33,7 @@ let upOperators = [];
 function loadUpOperators() {
     try {
         // 从operators_up.js文件中加载UP干员列表
+        console.log('开始加载UP干员列表');
         const script = document.createElement('script');
         script.src = 'operators/operators_up.js';
         script.async = false;
@@ -40,14 +41,19 @@ function loadUpOperators() {
             if (window.up_operators) {
                 upOperators = window.up_operators;
                 console.log('UP干员列表加载成功:', upOperators);
+            } else {
+                console.error('UP干员列表未定义');
+                upOperators = [];
             }
         };
         script.onerror = function() {
             console.error('加载UP干员列表失败');
+            upOperators = [];
         };
         document.head.appendChild(script);
     } catch (error) {
         console.error('加载UP干员列表出错:', error);
+        upOperators = [];
     }
 }
 
@@ -322,14 +328,17 @@ let operatorsData = {
 // 加载干员数据
 function loadOperatorsData() {
     console.log('开始加载干员数据');
+    console.log('globalVarMap大小:', Object.keys(globalVarMap).length);
     // 清空原有数据
     operatorsData.items = [];
     // 遍历所有干员ID
     for (const [operatorId, globalVarName] of Object.entries(globalVarMap)) {
         try {
             // 从全局变量中获取干员数据
+            console.log('尝试加载干员:', operatorId, globalVarName);
             const operatorData = window[globalVarName];
             if (operatorData) {
+                console.log('成功获取干员数据:', operatorId, operatorData.operator?.name);
                 // 获取能力值和面板值（使用满级数值）
                 const eliteData = operatorData.cleaned_data?.ability_extension?.elite || {};
                 const maxLevelData = eliteData["满级数值"] || eliteData["80级"] || eliteData["60级"] || {};
@@ -406,12 +415,16 @@ function loadOperatorsData() {
                 
                 // 添加到干员列表
                 operatorsData.items.push(operator);
+                console.log('干员添加成功:', operatorId, operator.name);
+            } else {
+                console.error('干员数据不存在:', operatorId, globalVarName);
             }
         } catch (error) {
             console.error(`加载干员 ${operatorId} 数据失败:`, error);
         }
     }
     console.log('干员数据加载完成:', operatorsData.items.length, '个干员');
+    console.log('operatorsData.items:', operatorsData.items);
 }
 
 // 筛选干员数据
@@ -674,28 +687,38 @@ function preloadOperatorFiles() {
     console.log('开始预加载干员数据文件');
     const operatorIds = Object.keys(globalVarMap);
     console.log('干员ID列表:', operatorIds);
-    operatorIds.forEach(operatorId => {
-        const script = document.createElement('script');
+    
+    // 使用同步加载方式，确保所有脚本按顺序执行
+    const scriptsToLoad = operatorIds.map(operatorId => {
         const fileName = globalVarMap[operatorId];
-        script.src = `operators/${fileName}.js`;
-        console.log('加载脚本:', script.src);
+        return `operators/${fileName}.js`;
+    });
+    
+    console.log('需要加载的脚本:', scriptsToLoad);
+    
+    // 逐个加载脚本
+    scriptsToLoad.forEach(scriptSrc => {
+        const script = document.createElement('script');
+        script.src = scriptSrc;
         script.async = false;
+        console.log('加载脚本:', scriptSrc);
         document.head.appendChild(script);
     });
 }
 
-// 当 DOM 加载完成后，预加载干员数据文件并初始化
-document.addEventListener('DOMContentLoaded', () => {
+// 当所有资源加载完成后，预加载干员数据文件并初始化
+window.onload = function() {
+    console.log('所有资源加载完成，开始初始化干员数据');
     // 先加载UP干员列表
     loadUpOperators();
     // 然后预加载干员数据文件
     preloadOperatorFiles();
-    // 给脚本加载一些时间
+    // 给脚本加载更多时间
     setTimeout(() => {
         loadOperatorsData();
         renderOperators();
-    }, 100);
-});
+    }, 1000);
+};
 
 
 
@@ -955,7 +978,14 @@ function renderOperatorRow(operator) {
 }
 
 function renderOperators() {
-    if (!operatorsData || !operatorsData.items) return;
+    console.log('开始渲染干员列表');
+    console.log('operatorsData:', operatorsData);
+    console.log('operatorsData.items长度:', operatorsData?.items?.length || 0);
+    
+    if (!operatorsData || !operatorsData.items) {
+        console.error('operatorsData或items不存在');
+        return;
+    }
     
     // 排序逻辑：主排序按实装时间（靠后的在上），副排序按稀有度（高稀有度在上），副副排序按UP状态（UP干员在上）
     operatorsData.items.sort((a, b) => {
@@ -984,17 +1014,24 @@ function renderOperators() {
     });
     
     const container = document.getElementById('operators-table-body');
-    if (!container) return;
+    if (!container) {
+        console.error('operators-table-body元素不存在');
+        return;
+    }
     
+    console.log('开始生成干员表格行');
     let allRowsHtml = '';
     for (let i = 0; i < operatorsData.items.length; i++) {
+        console.log('渲染干员:', i, operatorsData.items[i].name);
         allRowsHtml += renderOperatorRow(operatorsData.items[i]);
     }
     container.innerHTML = allRowsHtml;
+    console.log('干员表格渲染完成');
     
     const countElement = document.querySelector('.text-sm.text-gray-500');
     if (countElement) {
         countElement.innerHTML = '显示 <span class="font-medium">1</span> 到 <span class="font-medium">' + operatorsData.items.length + '</span> 共 <span class="font-medium">' + operatorsData.items.length + '</span> 个干员';
+        console.log('更新干员计数:', operatorsData.items.length);
     }
     
     // 添加点击事件监听器
@@ -1004,6 +1041,7 @@ function renderOperators() {
             window.location.href = 'operator-detail.html?itemId=' + itemId;
         });
     });
+    console.log('点击事件监听器添加完成');
 }
 
 
