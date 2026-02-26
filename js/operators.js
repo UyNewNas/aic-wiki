@@ -26,6 +26,34 @@ const globalVarMap = {
     '159': 'operator_159_洁尔佩塔'
 };
 
+// 预定义干员文件列表
+const operatorFiles = [
+    'operator_3_狼卫.js',
+    'operator_4_别礼.js',
+    'operator_5_佩丽卡.js',
+    'operator_7_莱万汀.js',
+    'operator_11_艾尔黛拉.js',
+    'operator_12_陈千语.js',
+    'operator_13_大潘.js',
+    'operator_24_余烬.js',
+    'operator_57_弧光.js',
+    'operator_87_阿列什.js',
+    'operator_88_艾维文娜.js',
+    'operator_89__管理员_男.js',
+    'operator_90_昼雪.js',
+    'operator_91_安塔尔.js',
+    'operator_92_萤石.js',
+    'operator_93_埃特拉.js',
+    'operator_94_卡契尔.js',
+    'operator_95_秋栗.js',
+    'operator_130_黎风.js',
+    'operator_131_骏卫.js',
+    'operator_150_赛希.js',
+    'operator_156_管理员_女.js',
+    'operator_157_伊冯.js',
+    'operator_159_洁尔佩塔.js'
+];
+
 // UP干员列表
 let upOperators = [];
 
@@ -683,26 +711,61 @@ function getWeaponValue(weapon) {
 }
 
 // 预加载所有干员数据文件
-function preloadOperatorFiles() {
+function preloadOperatorFiles(callback) {
     console.log('开始预加载干员数据文件');
-    const operatorIds = Object.keys(globalVarMap);
-    console.log('干员ID列表:', operatorIds);
+    const operatorsDir = 'operators/';
+    console.log('干员文件列表:', operatorFiles);
+    console.log('总共需要加载', operatorFiles.length, '个干员文件');
     
-    // 使用同步加载方式，确保所有脚本按顺序执行
-    const scriptsToLoad = operatorIds.map(operatorId => {
-        const fileName = globalVarMap[operatorId];
-        return `operators/${fileName}.js`;
-    });
+    let loadedCount = 0;
+    let successCount = 0;
+    let errorCount = 0;
     
-    console.log('需要加载的脚本:', scriptsToLoad);
-    
-    // 逐个加载脚本
-    scriptsToLoad.forEach(scriptSrc => {
-        const script = document.createElement('script');
-        script.src = scriptSrc;
-        script.async = false;
-        console.log('加载脚本:', scriptSrc);
-        document.head.appendChild(script);
+    // 加载每个干员文件
+    operatorFiles.forEach((file, index) => {
+        try {
+            console.log('加载干员文件:', file);
+            
+            // 动态创建script标签加载干员文件
+            const script = document.createElement('script');
+            script.src = operatorsDir + file;
+            script.async = true;
+            
+            script.onload = function() {
+                loadedCount++;
+                successCount++;
+                console.log('干员文件加载成功:', file, '已加载', loadedCount, '/', operatorFiles.length, '成功:', successCount, '失败:', errorCount);
+                
+                // 当所有文件加载完成后，执行回调
+                if (loadedCount === operatorFiles.length) {
+                    console.log('所有干员文件加载完成，成功:', successCount, '失败:', errorCount);
+                    if (callback) callback();
+                }
+            };
+            
+            script.onerror = function() {
+                loadedCount++;
+                errorCount++;
+                console.error('干员文件加载失败:', file, '已加载', loadedCount, '/', operatorFiles.length, '成功:', successCount, '失败:', errorCount);
+                
+                // 即使有文件加载失败，也要继续执行回调
+                if (loadedCount === operatorFiles.length) {
+                    console.log('所有干员文件加载完成，成功:', successCount, '失败:', errorCount);
+                    if (callback) callback();
+                }
+            };
+            
+            document.head.appendChild(script);
+        } catch (error) {
+            loadedCount++;
+            errorCount++;
+            console.error(`加载干员文件 ${file} 失败:`, error, '已加载', loadedCount, '/', operatorFiles.length, '成功:', successCount, '失败:', errorCount);
+            
+            if (loadedCount === operatorFiles.length) {
+                console.log('所有干员文件加载完成，成功:', successCount, '失败:', errorCount);
+                if (callback) callback();
+            }
+        }
     });
 }
 
@@ -711,13 +774,12 @@ window.onload = function() {
     console.log('所有资源加载完成，开始初始化干员数据');
     // 先加载UP干员列表
     loadUpOperators();
-    // 然后预加载干员数据文件
-    preloadOperatorFiles();
-    // 给脚本加载更多时间
-    setTimeout(() => {
+    // 然后预加载干员数据文件，使用回调方式处理加载完成后的逻辑
+    preloadOperatorFiles(() => {
+        console.log('干员文件加载完成，开始加载干员数据');
         loadOperatorsData();
         renderOperators();
-    }, 1000);
+    });
 };
 
 
@@ -749,17 +811,50 @@ const attributeImages = {
 
 const upImage = 'images/0b2606d89c5c98727339ec8088d9f71e.png';
 
-const starSVG = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="OperatorEditCard__Rank-ilQzgD dcsdby w-4 h-4">
+// 根据星级获取不同颜色的星星SVG
+function getStarSVG(starLevel) {
+    let primaryColor, secondaryColor, tertiaryColor;
+    
+    switch(starLevel) {
+        case 6:
+            primaryColor = '#FF9500'; // 橙色
+            secondaryColor = '#CC7A00';
+            tertiaryColor = '#FFB74D';
+            break;
+        case 5:
+            primaryColor = '#FDE047'; // 黄色
+            secondaryColor = '#EAB308';
+            tertiaryColor = '#FACC15';
+            break;
+        case 4:
+            primaryColor = '#9333EA'; // 紫色
+            secondaryColor = '#7E22CE';
+            tertiaryColor = '#A855F7';
+            break;
+        case 3:
+            primaryColor = '#60A5FA'; // 淡蓝色
+            secondaryColor = '#3B82F6';
+            tertiaryColor = '#93C5FD';
+            break;
+        default:
+            primaryColor = '#FDE047'; // 默认黄色
+            secondaryColor = '#EAB308';
+            tertiaryColor = '#FACC15';
+    }
+    
+    return `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="OperatorEditCard__Rank-ilQzgD dcsdby w-4 h-4">
 <g fill-rule="evenodd" clip-path="url(#rank_svg__a)" clip-rule="evenodd">
-<path fill="#FDE047" d="m5.845 17.424 6.369-3.667L9.605 9.25.87 14.28zm17.249.69-6.37-3.678-2.608 4.519 8.736 5.043zM20.417 0 15.2 2.686v7.07h5.217z" opacity="0.6">
+<path fill="${primaryColor}" d="m5.845 17.424 6.369-3.667L9.605 9.25.87 14.28zm17.249.69-6.37-3.678-2.608 4.519 8.736 5.043zM20.417 0 15.2 2.686v7.07h5.217z" opacity="0.6">
 </path>
-<path fill="#EAB308" d="m8.298 16.03 3.765-2.174-2.609-4.518-1.957 1.13s2.051 4.325.8 5.562m12.343.668-3.765-2.174-2.61 4.518 1.959 1.13s2.72-3.939 4.416-3.474m-.224-9.202S15.49 7.266 15.2 5.41v4.348h5.217z" opacity="0.502"></path>
-<path fill="#FACC15" d="m13.922 9.77-.136-6.147L9.42 6.145l.008 6.622c.29 2.125-1.28 3.35-1.28 3.35l4.519-2.61c1.53-1.238 1.256-3.737 1.256-3.737m3.887 3.639 5.391 2.957v-5.044l-5.74-3.304c-2.141-.655-2.26-2.783-2.26-2.783v5.217c.15 2.103 2.609 2.957 2.609 2.957m-5.4 1.547-5.257 3.191 4.368 2.522 5.731-3.318c1.695-1.314 3.54-.567 3.54-.567l-4.518-2.608c-1.839-.707-3.865.78-3.865.78">
+<path fill="${secondaryColor}" d="m8.298 16.03 3.765-2.174-2.609-4.518-1.957 1.13s2.051 4.325.8 5.562m12.343.668-3.765-2.174-2.61 4.518 1.959 1.13s2.72-3.939 4.416-3.474m-.224-9.202S15.49 7.266 15.2 5.41v4.348h5.217z" opacity="0.502"></path>
+<path fill="${tertiaryColor}" d="m13.922 9.77-.136-6.147L9.42 6.145l.008 6.622c.29 2.125-1.28 3.35-1.28 3.35l4.519-2.61c1.53-1.238 1.256-3.737 1.256-3.737m3.887 3.639 5.391 2.957v-5.044l-5.74-3.304c-2.141-.655-2.26-2.783-2.26-2.783v5.217c.15 2.103 2.609 2.957 2.609 2.957m-5.4 1.547-5.257 3.191 4.368 2.522 5.731-3.318c1.695-1.314 3.54-.567 3.54-.567l-4.518-2.608c-1.839-.707-3.865.78-3.865.78">
 </path>
 </g>
 <defs>
 <clipPath id="rank_svg__a"><path fill="#fff" d="M0 0h24v24H0z">
 </path></clipPath></defs></svg>`;
+}
+
 
 function getSubTypeName(subTypeId, value) {
     if (!operatorsData || !operatorsData.filterTagTree) return '';
@@ -775,7 +870,7 @@ function getRarityStars(value) {
     const stars = parseInt(value.slice(-1));
     let starHtml = '';
     for (let i = 0; i < stars; i++) {
-        starHtml += starSVG;
+        starHtml += getStarSVG(stars);
     }
     return starHtml;
 }

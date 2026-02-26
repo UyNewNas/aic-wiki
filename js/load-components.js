@@ -81,7 +81,8 @@ function setPageTitle() {
         'help.html': '帮助中心',
         'contact.html': '联系我们',
         'copyright.html': '版权声明',
-        'operator-detail.html': '干员详情'
+        'operator-detail.html': '干员详情',
+        'weapon-detail.html': '武器详情'
     };
     
     const titleElement = document.querySelector('header h2');
@@ -91,6 +92,90 @@ function setPageTitle() {
 }
 
 
+
+// 应用主题样式的函数
+function applyThemeStyles() {
+    // 检查当前主题
+    const currentTheme = localStorage.getItem('theme');
+    const isDarkMode = currentTheme === 'dark';
+    
+    // 直接设置body元素的样式
+    const body = document.body;
+    if (isDarkMode) {
+        body.style.backgroundColor = '#111827';
+        body.style.color = '#e5e7eb';
+    } else {
+        body.style.backgroundColor = '';
+        body.style.color = '';
+    }
+    
+    // 设置main元素的样式
+    const main = document.querySelector('main');
+    if (main) {
+        if (isDarkMode) {
+            main.style.backgroundColor = '#111827';
+        } else {
+            main.style.backgroundColor = '';
+        }
+    }
+    
+    // 设置header元素的样式
+    const header = document.querySelector('header');
+    if (header) {
+        if (isDarkMode) {
+            header.style.backgroundColor = '#1f2937';
+        } else {
+            header.style.backgroundColor = '';
+        }
+    }
+    
+    // 设置sidebar元素的样式
+    const sidebar = document.querySelector('aside');
+    if (sidebar) {
+        if (isDarkMode) {
+            sidebar.style.backgroundColor = '#1f2937';
+        } else {
+            sidebar.style.backgroundColor = '';
+        }
+    }
+    
+    // 设置卡片的样式
+    const cards = document.querySelectorAll('.card-hover');
+    cards.forEach(card => {
+        if (isDarkMode) {
+            card.style.backgroundColor = '#1f2937';
+        } else {
+            card.style.backgroundColor = '';
+        }
+    });
+    
+    console.log(`Theme styles applied! Current theme: ${isDarkMode ? 'dark' : 'light'}`);
+}
+
+// 初始化主题切换
+function initThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    
+    // 检查本地存储中的主题设置
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+        body.classList.add('dark-mode');
+    }
+    
+    // 主题切换按钮点击事件
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            document.documentElement.classList.toggle('dark');
+            body.classList.toggle('dark-mode');
+            const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+            localStorage.setItem('theme', currentTheme);
+            // 应用主题样式
+            applyThemeStyles();
+        });
+    }
+}
 
 // 加载所有组件
 document.addEventListener('DOMContentLoaded', () => {
@@ -107,4 +192,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 绑定侧边栏事件
     bindSidebarEvents();
+    
+    // 初始化主题切换
+    initThemeToggle();
+    
+    // 应用当前主题样式
+    setTimeout(() => {
+        console.log('Applying current theme styles...');
+        applyThemeStyles();
+    }, 500);
 });

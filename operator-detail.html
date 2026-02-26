@@ -6,39 +6,41 @@
     <title>AICwiki - 明日方舟：终末地 Wiki</title>
     <!-- 网站图标 -->
     <link rel="icon" href="icon.png" type="image/png">
+    <!-- 立即应用主题 -->
+    <script>
+        // 在页面加载之前检查本地存储中的主题设置
+        // 默认显示日间模式，只有在本地存储中明确设置了夜间模式时才显示夜间模式
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
     <!-- Tailwind CSS v3 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <!-- 统一的 Tailwind 配置 -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#1a56db',
-                        secondary: '#6b7280',
-                        success: '#10b981',
-                        danger: '#ef4444',
-                        warning: '#f59e0b',
-                        info: '#3b82f6',
-                        light: '#f3f4f6',
-                        dark: '#374151',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                    }
-                }
+
+    <link rel="stylesheet" href="css/night-mode.css">
+    <style type="text/tailwindcss">
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+        
+        @layer base {
+            :root {
+                --color-primary: #1a56db;
+                --color-secondary: #6b7280;
+                --color-success: #10b981;
+                --color-danger: #ef4444;
+                --color-warning: #f59e0b;
+                --color-info: #3b82f6;
+                --color-light: #f3f4f6;
+                --color-dark: #374151;
             }
         }
-    </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .content-auto {
-                content-visibility: auto;
-            }
+        
+        @layer components {
             .sidebar-active {
-                @apply bg-primary text-white;
+                @apply bg-blue-600 text-white;
             }
             .sidebar-icon {
                 @apply mr-3 text-lg;
@@ -53,7 +55,7 @@
                 @apply h-full rounded-full;
             }
             .tab-active {
-                @apply border-b-2 border-primary text-primary font-medium;
+                @apply border-b-2 border-blue-600 text-blue-600 font-medium;
             }
             .ability-bar {
                 @apply h-3 rounded-full bg-gray-200 overflow-hidden;
@@ -78,12 +80,12 @@
             <main class="flex-1 overflow-y-auto p-4 bg-gray-100 relative">
                 <!-- 头像 -->
                 <div id="operator-avatar" class="absolute top-[160px] left-10 w-32 h-32 bg-white rounded-full border-4 shadow-lg flex items-center justify-center z-50">
-                    <i class="fa fa-user text-4xl text-primary/30"></i>
+                    <i class="fa fa-user text-4xl text-blue-600/30"></i>
                 </div>
                 
                 <!-- 返回按钮 -->
                 <div class="mb-4">
-                    <a href="operators.html" class="inline-flex items-center text-sm text-primary hover:underline">
+                    <a href="operators.html" class="inline-flex items-center text-sm text-blue-600 hover:underline">
                         <i class="fa fa-arrow-left mr-1"></i> 返回干员列表
                     </a>
                 </div>
@@ -92,8 +94,8 @@
                 <div class="bg-white rounded-lg shadow-sm mb-6">
                     <div class="relative">
                         <!-- 背景图 -->
-                        <div class="h-40 bg-primary/20 relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-transparent flex items-center">
+                        <div class="h-40 bg-blue-600/20 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-600/80 to-transparent flex items-center">
                                 <div class="p-6 text-white pt-2">
                                     <h1 class="text-xl font-bold" id="operator-name">干员名字</h1>
                                     <p class="text-sm opacity-90" id="operator-class">6星 术师</p>
