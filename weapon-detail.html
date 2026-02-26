@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICwiki - 明日方舟：终末地 Wiki</title>
+    <!-- 网站图标 -->
+    <link rel="icon" href="icon.png" type="image/png">
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 立即应用主题 -->
+    <script>
+        // 在页面加载之前检查本地存储中的主题设置
+        // 默认显示日间模式，只有在本地存储中明确设置了夜间模式时才显示夜间模式
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/night-mode.css">
+    <style type="text/tailwindcss">
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+        
+        @layer base {
+            :root {
+                --color-primary: #1a56db;
+                --color-secondary: #6b7280;
+                --color-success: #10b981;
+                --color-danger: #ef4444;
+                --color-warning: #f59e0b;
+                --color-info: #3b82f6;
+                --color-light: #f3f4f6;
+                --color-dark: #374151;
+            }
+        }
+        
+        @layer components {
+            .sidebar-active {
+                @apply bg-blue-600 text-white;
+            }
+            .sidebar-icon {
+                @apply mr-3 text-lg;
+            }
+            .card-hover {
+                @apply transition-all duration-300 hover:shadow-lg;
+            }
+            .progress-bar {
+                @apply h-2 rounded-full bg-gray-200 overflow-hidden;
+            }
+            .progress-value {
+                @apply h-full rounded-full;
+            }
+            .tab-active {
+                @apply border-b-2 border-blue-600 text-blue-600 font-medium;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="flex h-screen overflow-hidden">
+        <!-- 左侧导航栏容器 -->
+        <div id="sidebar-container"></div>
+        
+        <!-- 主内容区域 -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- 顶部导航栏容器 -->
+            <div id="header-container"></div>
+            
+            <!-- 内容区域 -->
+            <main class="flex-1 overflow-y-auto p-4 bg-gray-100 relative">
+                <!-- 武器图标 -->
+                <div id="weapon-icon" class="absolute top-[160px] left-10 w-32 h-32 bg-white rounded-full border-4 shadow-lg flex items-center justify-center z-50">
+                    <i class="fa fa-crosshairs text-4xl text-primary/30"></i>
+                </div>
+                
+                <!-- 返回按钮 -->
+                <div class="mb-4">
+                    <a href="weapons.html" class="inline-flex items-center text-sm text-primary hover:underline">
+                        <i class="fa fa-arrow-left mr-1"></i> 返回武器列表
+                    </a>
+                </div>
+                
+                <!-- 武器头部信息 -->
+                <div class="bg-white rounded-lg shadow-sm mb-6">
+                    <div class="relative">
+                        <!-- 背景图 -->
+                        <div class="h-40 bg-blue-600/20 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-600/80 to-transparent flex items-center">
+                                <div class="p-6 text-white pt-2">
+                                    <h1 class="text-xl font-bold" id="weapon-name">武器名字</h1>
+                                    <p class="text-sm opacity-90" id="weapon-class">高级 手铳</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 基本信息 -->
+                    <div class="pt-20 pb-4 px-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">武器类型</h3>
+                                <p id="weapon-type" class="text-sm">手铳</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">稀有度</h3>
+                                <p id="weapon-rarity" class="text-sm">高级</p>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">获取方式</h3>
+                                <p id="weapon-obtain" class="text-sm">武器池抽卡获取</p>
+                            </div>
+                            <div class="md:col-span-3">
+                                <h3 class="text-sm font-medium text-gray-500 mb-1">武器介绍</h3>
+                                <p id="weapon-intro" class="text-sm">终末地干员用武器，装备之后可以显著提升干员的作战能力。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 标签页导航 -->
+                <div class="bg-white rounded-t-lg shadow-sm mb-1">
+                    <div class="flex border-b">
+                        <button class="tab-active flex-1 py-3 px-4 text-center text-sm" data-tab="overview">
+                            基础属性
+                        </button>
+                        <button class="flex-1 py-3 px-4 text-center text-sm hover:bg-gray-50" data-tab="skills">
+                            武器技能
+                        </button>
+                        <button class="flex-1 py-3 px-4 text-center text-sm hover:bg-gray-50" data-tab="upgrade">
+                            升级材料
+                        </button>
+                        <button class="flex-1 py-3 px-4 text-center text-sm hover:bg-gray-50" data-tab="archive">
+                            武器档案
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 标签页内容 -->
+                <div class="bg-white rounded-b-lg shadow-sm p-6 min-h-[500px]">
+                    <!-- 基础属性标签页 -->
+                    <div id="overview-tab" class="tab-content">
+                        <!-- 基础属性表 -->
+                        <div class="mb-8">
+                            <h2 class="text-lg font-semibold mb-4">基础属性</h2>
+                            <div class="overflow-x-auto">
+                                <table class="w-full border-collapse">
+                                    <thead class="bg-gray-100">
+                                        <tr>
+                                            <th class="border p-2 text-center text-sm w-1/7">等级</th>
+                                            <th class="border p-2 text-center text-sm w-1/7">基础攻击力</th>
+                                            <th class="border p-2 text-center text-sm w-4/7">技能</th>
+                                            <th class="border p-2 text-center text-sm w-1/7">突破需求材料</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- 等级1 -->
+                                        <tr>
+                                            <td class="border p-2 text-center text-sm font-medium">等级1</td>
+                                            <td id="base-attack-1" class="border p-2 text-center text-sm">...</td>
+                                            <td id="skills-1" class="border p-2 text-sm whitespace-pre-line">...</td>
+                                            <td id="materials-1" class="border p-2 text-center text-sm">-</td>
+                                        </tr>
+                                        <!-- 等级20 -->
+                                        <tr>
+                                            <td class="border p-2 text-center text-sm font-medium">等级20突破1</td>
+                                            <td id="base-attack-20" class="border p-2 text-center text-sm">...</td>
+                                            <td id="skills-20" class="border p-2 text-sm whitespace-pre-line">...</td>
+                                            <td id="materials-20" class="border p-2 text-center text-sm">...</td>
+                                        </tr>
+                                        <!-- 等级40 -->
+                                        <tr>
+                                            <td class="border p-2 text-center text-sm font-medium">等级40突破2</td>
+                                            <td id="base-attack-40" class="border p-2 text-center text-sm">...</td>
+                                            <td id="skills-40" class="border p-2 text-sm whitespace-pre-line">...</td>
+                                            <td id="materials-40" class="border p-2 text-center text-sm">...</td>
+                                        </tr>
+                                        <!-- 等级60 -->
+                                        <tr>
+                                            <td class="border p-2 text-center text-sm font-medium">等级60突破3</td>
+                                            <td id="base-attack-60" class="border p-2 text-center text-sm">...</td>
+                                            <td id="skills-60" class="border p-2 text-sm whitespace-pre-line">...</td>
+                                            <td id="materials-60" class="border p-2 text-center text-sm">...</td>
+                                        </tr>
+                                        <!-- 等级80 -->
+                                        <tr>
+                                            <td class="border p-2 text-center text-sm font-medium">等级80突破4</td>
+                                            <td id="base-attack-80" class="border p-2 text-center text-sm">...</td>
+                                            <td id="skills-80" class="border p-2 text-sm whitespace-pre-line">...</td>
+                                            <td id="materials-80" class="border p-2 text-center text-sm">...</td>
+                                        </tr>
+                                        <!-- 等级90（满级） -->
+                                        <tr>
+                                            <td class="border p-2 text-center text-sm font-medium">等级90（满级满技能）</td>
+                                            <td id="base-attack-90" class="border p-2 text-center text-sm">...</td>
+                                            <td id="skills-90" class="border p-2 text-sm whitespace-pre-line">...</td>
+                                            <td id="materials-90" class="border p-2 text-center text-sm">...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 武器技能标签页 -->
+                    <div id="skills-tab" class="tab-content hidden">
+                        <!-- 技能将由 JavaScript 动态加载 -->
+                        <div id="skills-container" class="space-y-6">
+                            <!-- 技能卡片将由 JavaScript 动态加载 -->
+                        </div>
+                        
+                        <!-- 推荐矩阵 -->
+                        <div class="mt-8">
+                            <h2 class="text-lg font-semibold mb-4">推荐矩阵</h2>
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <p id="recommended-matrices" class="text-sm">无瑕基质·迸发</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 升级材料标签页 -->
+                    <div id="upgrade-tab" class="tab-content hidden">
+                        <h2 class="text-lg font-semibold mb-4">升级材料</h2>
+                        <div id="upgrade-materials-container" class="space-y-4">
+                            <!-- 升级材料将由 JavaScript 动态加载 -->
+                        </div>
+                    </div>
+                    
+                    <!-- 武器档案标签页 -->
+                    <div id="archive-tab" class="tab-content hidden">
+                        <h2 class="text-lg font-semibold mb-4">武器档案</h2>
+                        <div id="archive-container" class="bg-gray-50 rounded-lg p-4">
+                            <p id="archive-content" class="text-sm whitespace-pre-line">武器档案内容将由 JavaScript 动态加载</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- 移动端侧边栏容器 -->
+    <div id="mobile-sidebar-container"></div>
+    
+    <script src="js/components.js" defer></script>
+    <script src="js/load-components.js" defer></script>
+    <script src="js/weapon-detail.js?v=1" defer></script>
+    <script>
+        // 从URL参数中获取武器ID，支持id和itemId参数
+        function getWeaponId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id') || urlParams.get('itemId') || '110'; // 默认加载O.B.J.迅极的数据
+        }
+        
+        // 动态加载武器数据文件
+        function loadWeaponDataFile() {
+            const weaponId = getWeaponId();
+            
+            // 预定义的武器文件映射，根据实际文件命名添加
+            const weaponFiles = {
+                '110': 'weapon_110_O.B.J.迅极.js',
+                '100': 'weapon_100_嵌合正义.js',
+                '101': 'weapon_101_O.B.J.尖峰.js',
+                '102': 'weapon_102_向心之引.js',
+                '103': 'weapon_103_负山.js',
+                '104': 'weapon_104_骁勇.js',
+                '105': 'weapon_105_J.E.T..js',
+                '106': 'weapon_106_佩科5.js',
+                '107': 'weapon_107_呼啸守卫.js',
+                '108': 'weapon_108_长路.js',
+                '109': 'weapon_109_作品：众生.js',
+                '111': 'weapon_111_理性告别.js',
+                '112': 'weapon_112_艺术暴君.js',
+                '113': 'weapon_113_领航者.js',
+                '114': 'weapon_114_楔子.js',
+                '115': 'weapon_115_同类相食.js',
+                '116': 'weapon_116_吉米尼12.js',
+                '117': 'weapon_117_全自动骇新星.js',
+                '118': 'weapon_118_荧光雷羽.js',
+                '119': 'weapon_119_悼亡诗.js',
+                '120': 'weapon_120_莫奈何.js',
+                '121': 'weapon_121_迷失荒野.js',
+                '122': 'weapon_122_布道自由.js',
+                '123': 'weapon_123_O.B.J.术识.js',
+                '124': 'weapon_124_使命必达.js',
+                '125': 'weapon_125_沧溟星梦.js',
+                '126': 'weapon_126_作品：蚀迹.js',
+                '127': 'weapon_127_爆破单元.js',
+                '128': 'weapon_128_遗忘.js',
+                '129': 'weapon_129_骑士精神.js',
+                '58': 'weapon_58_塔尔11.js',
+                '59': 'weapon_59_应急手段.js',
+                '60': 'weapon_60_浪潮.js',
+                '61': 'weapon_61_钢铁余音.js',
+                '62': 'weapon_62_坚城铸造者.js',
+                '63': 'weapon_63_逐鳞3.0.js',
+                '64': 'weapon_64_十二问.js',
+                '65': 'weapon_65_O.B.J.轻芒.js',
+                '66': 'weapon_66_仰止.js',
+                '67': 'weapon_67_宏愿.js',
+                '68': 'weapon_68_不知归.js',
+                '70': 'weapon_70_熔铸火焰.js',
+                '71': 'weapon_71_黯色火炬.js',
+                '72': 'weapon_72_扶摇.js',
+                '73': 'weapon_73_热熔切割器.js',
+                '74': 'weapon_74_显赫声名.js',
+                '75': 'weapon_75_白夜新星.js',
+                '76': 'weapon_76_达尔霍夫7.js',
+                '77': 'weapon_77_工业零点一.js',
+                '78': 'weapon_78_淬火者.js',
+                '79': 'weapon_79_探骊.js',
+                '80': 'weapon_80_古渠.js',
+                '81': 'weapon_81_终点之声.js',
+                '82': 'weapon_82_O.B.J.重荷.js',
+                '83': 'weapon_83_大雷斑.js',
+                '84': 'weapon_84_赫拉芬格.js',
+                '85': 'weapon_85_典范.js',
+                '86': 'weapon_86_昔日精品.js',
+                '96': 'weapon_96_破碎君王.js',
+                '97': 'weapon_97_奥佩罗77.js',
+                '98': 'weapon_98_寻路者道标.js',
+                '99': 'weapon_99_天使杀手.js'
+            };
+            
+            // 获取文件名
+            const fileName = weaponFiles[weaponId] || `weapon_${weaponId}.js`;
+            const script = document.createElement('script');
+            // 添加版本参数以强制刷新缓存
+            script.src = `weapons/${fileName}?v=${new Date().getTime()}`;
+            console.log('尝试加载武器数据文件:', script.src);
+            script.onload = function() {
+                console.log('武器数据文件加载成功:', fileName);
+                // 数据加载完成后，初始化页面
+                window.initWeaponDetail();
+            };
+            script.onerror = function() {
+                console.error('加载武器数据失败:', fileName);
+                // 显示错误信息
+                const errorElement = document.createElement('div');
+                errorElement.className = 'bg-red-50 border border-red-200 text-red-600 p-4 rounded-lg m-4';
+                errorElement.textContent = `加载武器数据失败，请检查武器ID是否正确。尝试加载的文件: weapons/${fileName}`;
+                document.querySelector('main').prepend(errorElement);
+            };
+            document.head.appendChild(script);
+        }
+        
+        // 页面加载完成后加载数据文件
+        document.addEventListener('DOMContentLoaded', loadWeaponDataFile);
+    </script>
+</body>
+</html>

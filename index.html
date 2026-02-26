@@ -6,39 +6,39 @@
     <title>AICwiki - 明日方舟：终末地 Wiki</title>
     <!-- 网站图标 -->
     <link rel="icon" href="icon.png" type="image/png">
-    <!-- Tailwind CSS v3 -->
-    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <!-- 统一的 Tailwind 配置 -->
+    <!-- 立即应用主题 -->
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#1a56db',
-                        secondary: '#6b7280',
-                        success: '#10b981',
-                        danger: '#ef4444',
-                        warning: '#f59e0b',
-                        info: '#3b82f6',
-                        light: '#f3f4f6',
-                        dark: '#374151',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                    }
-                }
-            }
+        // 在页面加载之前检查本地存储中的主题设置
+        // 默认显示日间模式，只有在本地存储中明确设置了夜间模式时才显示夜间模式
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark');
         }
     </script>
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style type="text/tailwindcss">
-        @layer utilities {
-            .content-auto {
-                content-visibility: auto;
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+        
+        @layer base {
+            :root {
+                --color-primary: #1a56db;
+                --color-secondary: #6b7280;
+                --color-success: #10b981;
+                --color-danger: #ef4444;
+                --color-warning: #f59e0b;
+                --color-info: #3b82f6;
+                --color-light: #f3f4f6;
+                --color-dark: #374151;
             }
+        }
+        
+        @layer components {
             .sidebar-active {
-                @apply bg-primary text-white;
+                @apply bg-blue-600 text-white;
             }
             .sidebar-icon {
                 @apply mr-3 text-lg;
@@ -54,8 +54,72 @@
             }
         }
     </style>
+    <!-- 夜间模式样式 -->
+    <style>
+        /* 夜间模式样式 */
+        html.dark {
+            color-scheme: dark;
+        }
+
+        /* 基础样式 - 使用最高优先级 */
+        body.dark-mode {
+            background-color: #111827 !important;
+            color: #e5e7eb !important;
+        }
+
+        /* 背景颜色 - 使用最高优先级 */
+        .dark-mode .bg-white {
+            background-color: #1f2937 !important;
+        }
+
+        .dark-mode .bg-gray-100 {
+            background-color: #111827 !important;
+        }
+
+        .dark-mode .bg-gray-50 {
+            background-color: #1f2937 !important;
+        }
+
+        /* 主内容区域 */
+        .dark-mode main {
+            background-color: #111827 !important;
+        }
+
+        /* 顶部导航栏 */
+        .dark-mode header {
+            background-color: #1f2937 !important;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3) !important;
+        }
+
+        /* 侧边栏 */
+        .dark-mode aside {
+            background-color: #1f2937 !important;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3) !important;
+        }
+
+        /* 卡片 */
+        .dark-mode .card-hover {
+            background-color: #1f2937 !important;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3) !important;
+        }
+
+        /* 文本颜色 */
+        .dark-mode .text-gray-500 {
+            color: #9ca3af !important;
+        }
+
+        .dark-mode .text-gray-700 {
+            color: #e5e7eb !important;
+        }
+
+        /* 边框颜色 */
+        .dark-mode .border-gray-300 {
+            border-color: #374151 !important;
+        }
+    </style>
+
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gray-100 font-sans dark:bg-gray-900 dark:text-gray-200" id="body-element">
     <div class="flex h-screen overflow-hidden">
         <!-- 左侧导航栏容器 -->
         <div id="sidebar-container"></div>
@@ -254,7 +318,7 @@
                             </div>
                         </div>
                         <div class="flex items-center mb-4">
-                            <button id="calculate-btn" class="bg-primary text-white px-4 py-2 rounded hover:bg-blue-600">计算伤害</button>
+                            <button id="calculate-btn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">计算伤害</button>
                             <span id="result" class="ml-4 text-lg font-bold">预计伤害: 0</span>
                         </div>
                         <div class="p-3 bg-gray-50 rounded">
@@ -311,8 +375,8 @@
     <!-- 移动端侧边栏容器 -->
     <div id="mobile-sidebar-container"></div>
     
-    <script src="js/components.js" defer></script>
-    <script src="js/load-components.js" defer></script>
+    <script src="js/components.js?v=1.0" defer></script>
+    <script src="js/load-components.js?v=1.0" defer></script>
     
     <script>
         // 进度条动画
@@ -386,6 +450,8 @@
                 }, 150);
             });
         });
+        
+
     </script>
 </body>
 </html>
