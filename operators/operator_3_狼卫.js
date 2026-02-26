@@ -2,7 +2,7 @@ var operator_3_狼卫 = {
   "operator": {
     "itemId": "3",
     "name": "狼卫",
-    "cover": "./images/6981cf549fd9f8e1d8fd61cc_3eac6ad0.png"
+    "cover": "./images/operators/operator_3_狼卫_6981cf549fd9f8e1d8fd61cc_3eac6ad0.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=3",

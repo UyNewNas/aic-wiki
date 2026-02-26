@@ -2,7 +2,7 @@ var operator_4_别礼 = {
   "operator": {
     "itemId": "4",
     "name": "别礼",
-    "cover": "./images/6981a44d9fd9f8e1d8fd5d22_56331367.png"
+    "cover": "./images/operators/operator_4_别礼_6981a44d9fd9f8e1d8fd5d22_56331367.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=4",

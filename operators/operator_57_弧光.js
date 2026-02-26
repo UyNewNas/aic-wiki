@@ -2,7 +2,7 @@ var operator_57_弧光 = {
   "operator": {
     "itemId": "57",
     "name": "弧光",
-    "cover": "./images/6981b85449da91d62c6689cc_f1525633.png"
+    "cover": "./images/operators/operator_57_弧光_6981b85449da91d62c6689cc_f1525633.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=57",

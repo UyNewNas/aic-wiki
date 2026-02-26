@@ -2,7 +2,7 @@ var operator_13_大潘 = {
   "operator": {
     "itemId": "13",
     "name": "大潘",
-    "cover": "./images/698771821acbba54e4b0e048_3eac6ad0.png"
+    "cover": "./images/operators/operator_13_大潘_698771821acbba54e4b0e048_3eac6ad0.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=13",

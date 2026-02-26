@@ -2,7 +2,7 @@ var operator_90_昼雪 = {
   "operator": {
     "itemId": "90",
     "name": "昼雪",
-    "cover": "./images/6980bf4a3a151ae9156138f7_f1525633.png"
+    "cover": "./images/operators/operator_90_昼雪_6980bf4a3a151ae9156138f7_f1525633.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=90",

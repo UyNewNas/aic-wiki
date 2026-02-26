@@ -2,7 +2,7 @@ var operator_87_阿列什 = {
   "operator": {
     "itemId": "87",
     "name": "阿列什",
-    "cover": "./images/699434292468ffc1c1e2b772_f1525633.png"
+    "cover": "./images/operators/operator_87_阿列什_699434292468ffc1c1e2b772_f1525633.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=87",

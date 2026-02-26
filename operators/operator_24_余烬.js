@@ -2,7 +2,7 @@ var operator_24_余烬 = {
   "operator": {
     "itemId": "24",
     "name": "余烬",
-    "cover": "./images/69940065223662a892b01da4_db193eac.png"
+    "cover": "./images/operators/operator_24_余烬_69940065223662a892b01da4_db193eac.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=24",

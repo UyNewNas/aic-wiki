@@ -2,7 +2,7 @@ var operator_157_伊冯 = {
   "operator": {
     "itemId": "157",
     "name": "伊冯",
-    "cover": "./images/69807e73d262875d5b986600_2f76db19.png"
+    "cover": "./images/operators/operator_157_伊冯_69807e73d262875d5b986600_2f76db19.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=157",

@@ -112,7 +112,7 @@ const headerHTML = `
             </button>
             <div class="relative">
                 <button class="flex items-center text-gray-700 dark:text-gray-200">
-                    <img src="" alt="用户头像" class="w-8 h-8 rounded-full mr-2">
+                    <img src="./images/operators/operator_156_管理员_女_837428a7e2fdc13972d45599675f53a4.png" alt="用户头像" class="w-8 h-8 rounded-full mr-2">
                     <span>管理员</span>
                     <i class="fa fa-caret-down ml-2"></i>
                 </button>

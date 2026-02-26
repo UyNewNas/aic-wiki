@@ -2,7 +2,7 @@ var operator_159_洁尔佩塔 = {
   "operator": {
     "itemId": "159",
     "name": "洁尔佩塔",
-    "cover": "./images/6980d4aa4973d8a11340c613_2f76db19.png"
+    "cover": "./images/operators/operator_159_洁尔佩塔_6980d4aa4973d8a11340c613_2f76db19.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=159",

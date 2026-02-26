@@ -2,7 +2,7 @@ var operator_7_莱万汀 = {
   "operator": {
     "itemId": "7",
     "name": "莱万汀",
-    "cover": "./images/9a215e451767e4527e1f8d1f8ce09fef.png"
+    "cover": "./images/operators/operator_7_莱万汀_9a215e451767e4527e1f8d1f8ce09fef.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=7",

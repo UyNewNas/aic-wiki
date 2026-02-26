@@ -2,7 +2,7 @@ var operator_150_赛希 = {
   "operator": {
     "itemId": "150",
     "name": "赛希",
-    "cover": "./images/6993df14b32aacba0e7256d4_13673ac9.png"
+    "cover": "./images/operators/operator_150_赛希_6993df14b32aacba0e7256d4_13673ac9.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=150",

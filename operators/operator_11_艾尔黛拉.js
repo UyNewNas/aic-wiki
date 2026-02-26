@@ -2,7 +2,7 @@ var operator_11_艾尔黛拉 = {
   "operator": {
     "itemId": "11",
     "name": "艾尔黛拉",
-    "cover": "./images/3f24dfab756936f20757e5a5b5ddd966.png"
+    "cover": "./images/operators/operator_11_艾尔黛拉_3f24dfab756936f20757e5a5b5ddd966.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=11",

@@ -2,7 +2,7 @@ var operator_93_埃特拉 = {
   "operator": {
     "itemId": "93",
     "name": "埃特拉",
-    "cover": "./images/6982b354f139cae54d7333a2_6ad0f152.png"
+    "cover": "./images/operators/operator_93_埃特拉_6982b354f139cae54d7333a2_6ad0f152.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=93",

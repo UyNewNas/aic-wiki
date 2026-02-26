@@ -2,7 +2,7 @@ var operator_94_卡契尔 = {
   "operator": {
     "itemId": "94",
     "name": "卡契尔",
-    "cover": "./images/6980af993a151ae9156136ea_f1525633.png"
+    "cover": "./images/operators/operator_94_卡契尔_6980af993a151ae9156136ea_f1525633.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=94",

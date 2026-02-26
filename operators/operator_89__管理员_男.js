@@ -2,7 +2,7 @@ var operator_89__管理员_男 = {
   "operator": {
     "itemId": "89",
     "name": "管理员 (男)",
-    "cover": "./images/40da4202dc8dd5d4a943077b195f5f25.png"
+    "cover": "./images/operators/operator_89__管理员_男_40da4202dc8dd5d4a943077b195f5f25.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=89",

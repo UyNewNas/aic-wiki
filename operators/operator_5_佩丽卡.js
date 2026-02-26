@@ -2,7 +2,7 @@ var operator_5_佩丽卡 = {
   "operator": {
     "itemId": "5",
     "name": "佩丽卡",
-    "cover": "./images/6979ace2deae33c4ae1159c0_3eac6ad0.png"
+    "cover": "./images/operators/operator_5_佩丽卡_6979ace2deae33c4ae1159c0_3eac6ad0.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=5",

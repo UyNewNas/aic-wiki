@@ -2,7 +2,7 @@ var operator_130_黎风 = {
   "operator": {
     "itemId": "130",
     "name": "黎风",
-    "cover": "./images/69822586645bf8ceddc4e329_f1525633.png"
+    "cover": "./images/operators/operator_130_黎风_69822586645bf8ceddc4e329_f1525633.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=130",

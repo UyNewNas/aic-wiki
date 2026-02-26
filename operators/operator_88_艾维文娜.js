@@ -2,7 +2,7 @@ var operator_88_艾维文娜 = {
   "operator": {
     "itemId": "88",
     "name": "艾维文娜",
-    "cover": "./images/6987747b94e337a3813bf30c_13673ac9.png"
+    "cover": "./images/operators/operator_88_艾维文娜_6987747b94e337a3813bf30c_13673ac9.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=88",

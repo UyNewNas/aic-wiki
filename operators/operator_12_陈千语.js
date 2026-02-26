@@ -2,7 +2,7 @@ var operator_12_陈千语 = {
   "operator": {
     "itemId": "12",
     "name": "陈千语",
-    "cover": "./images/697b015c4973d8a1133f7876_6ad0f152.png"
+    "cover": "./images/operators/operator_12_陈千语_697b015c4973d8a1133f7876_6ad0f152.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=12",

@@ -2,7 +2,7 @@ var operator_91_安塔尔 = {
   "operator": {
     "itemId": "91",
     "name": "安塔尔",
-    "cover": "./images/69835ef9645bf8ceddc50a96_2f76db19.png"
+    "cover": "./images/operators/operator_91_安塔尔_69835ef9645bf8ceddc50a96_2f76db19.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=91",

@@ -2,7 +2,7 @@ var operator_95_秋栗 = {
   "operator": {
     "itemId": "95",
     "name": "秋栗",
-    "cover": "./images/00598faf8a7eccab9c4d64e102faac6b.png"
+    "cover": "./images/operators/operator_95_秋栗_00598faf8a7eccab9c4d64e102faac6b.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=95",

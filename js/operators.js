@@ -793,23 +793,23 @@ const attributeColors = {
 };
 
 const professionImages = {
-    '10201': 'images/a089ebba35f1f3bdbb91d4ce196f76e1.png', // 近卫
-    '10202': 'images/11db1d30aa3c6a03e185041f93c34cf9.png', // 术师
-    '10203': 'images/adb037b1c91a286b327b20105fd6a91c.png', // 突击
-    '10204': 'images/0a6af6c7e7bfe14cc3ba46facad1f223.png', // 先锋
-    '10205': 'images/024be87f334fcb9c49e323c8acbc83bc.png', // 重装
-    '10206': 'images/fc9bd139a3eb5fae8eb386a0632430c9.png'  // 辅助
+    '10201': 'images/operators/a089ebba35f1f3bdbb91d4ce196f76e1.png', // 近卫
+    '10202': 'images/operators/11db1d30aa3c6a03e185041f93c34cf9.png', // 术师
+    '10203': 'images/operators/adb037b1c91a286b327b20105fd6a91c.png', // 突击
+    '10204': 'images/operators/0a6af6c7e7bfe14cc3ba46facad1f223.png', // 先锋
+    '10205': 'images/operators/024be87f334fcb9c49e323c8acbc83bc.png', // 重装
+    '10206': 'images/operators/fc9bd139a3eb5fae8eb386a0632430c9.png'  // 辅助
 };
 
 const attributeImages = {
-    '10101': 'images/55123575290c305b84a32935c53b5b5d.png', // 灼热
-    '10102': 'images/c242a087a8692aaf549d90cf0cb6333a.png', // 电磁
-    '10103': 'images/455928850a7131ed4f05f52239a27ce5.png', // 寒冷
-    '10104': 'images/ca444454f4aebafd4a4aebb8acf1d726.png', // 自然
-    '10105': 'images/34a573fd082ea88ffbd20d38fa36c5b7.png'  // 物理
+    '10101': 'images/operators/55123575290c305b84a32935c53b5b5d.png', // 灼热
+    '10102': 'images/operators/c242a087a8692aaf549d90cf0cb6333a.png', // 电磁
+    '10103': 'images/operators/455928850a7131ed4f05f52239a27ce5.png', // 寒冷
+    '10104': 'images/operators/ca444454f4aebafd4a4aebb8acf1d726.png', // 自然
+    '10105': 'images/operators/34a573fd082ea88ffbd20d38fa36c5b7.png'  // 物理
 };
 
-const upImage = 'images/0b2606d89c5c98727339ec8088d9f71e.png';
+const upImage = 'images/operators/0b2606d89c5c98727339ec8088d9f71e.png';
 
 // 根据星级获取不同颜色的星星SVG
 function getStarSVG(starLevel) {

@@ -2,7 +2,7 @@ var operator_156_管理员_女 = {
   "operator": {
     "itemId": "156",
     "name": "管理员 (女)",
-    "cover": "./images/837428a7e2fdc13972d45599675f53a4.png"
+    "cover": "./images/operators/operator_156_管理员_女_837428a7e2fdc13972d45599675f53a4.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=156",

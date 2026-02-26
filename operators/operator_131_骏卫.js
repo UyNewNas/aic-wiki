@@ -2,7 +2,7 @@ var operator_131_骏卫 = {
   "operator": {
     "itemId": "131",
     "name": "骏卫",
-    "cover": "./images/6983540cf139cae54d734e26_13673ac9.png"
+    "cover": "./images/operators/operator_131_骏卫_6983540cf139cae54d734e26_13673ac9.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=131",

@@ -2,7 +2,7 @@ var operator_92_萤石 = {
   "operator": {
     "itemId": "92",
     "name": "萤石",
-    "cover": "./images/d50a55c6f0bb70419677592a21b635ef.png"
+    "cover": "./images/operators/operator_92_萤石_d50a55c6f0bb70419677592a21b635ef.png"
   },
   "cleaned_data": {
     "url": "https://wiki.skland.com/endfield/detail?mainTypeId=1&subTypeId=1&gameEntryId=92",
